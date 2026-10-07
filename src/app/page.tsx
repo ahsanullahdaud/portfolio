@@ -1,19 +1,20 @@
 import { Card } from "@/components/cards/Card";
 import { CardLabel } from "@/components/cards/CardLabel";
+import { StatCard } from "@/components/cards/StatCard";
 import { Cursor } from "@/components/shell/Cursor";
 import { PromptLine } from "@/components/shell/PromptLine";
 import { Screen } from "@/components/shell/Screen";
 import { identity } from "@/content/identity";
 import { screen } from "@/content/screens";
+import { stats } from "@/content/stats";
 import { ui } from "@/content/ui";
 
-// Index (PLAN.md §5.1). Step 4: the hero carries the prompt line and the name; the
-// other cards are placeholders at their final grid positions until step 7.
+// Index (PLAN.md §5.1). The hero carries the prompt line and the name and the stat
+// cards are final; the photo, status and featured cards are placeholders until step 7.
 export default function Index() {
   const words = identity.name.split(" ");
   const firstLine = words.slice(0, -1).join(" ");
   const lastLine = words[words.length - 1];
-  const statLabels = ui.labels.stats;
 
   return (
     <Screen rows={screen.index.rows}>
@@ -49,13 +50,14 @@ export default function Index() {
 
       {/* Stats: 2x2 on phones, one row of four from 640px. */}
       <div className="grid grid-cols-2 gap-2.5 sm:contents">
-        {[statLabels.experience, statLabels.support, statLabels.creatorMatch, statLabels.tests].map(
-          (label) => (
-            <Card key={label} className="sm:col-span-3 lg:col-span-3">
-              <CardLabel>{label}</CardLabel>
-            </Card>
-          ),
-        )}
+        {stats.map((stat) => (
+          <StatCard
+            key={stat.id}
+            label={ui.labels.stats[stat.id]}
+            stat={stat}
+            className="sm:col-span-3 lg:col-span-3"
+          />
+        ))}
       </div>
     </Screen>
   );

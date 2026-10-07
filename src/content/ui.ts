@@ -11,6 +11,19 @@ export const ui = {
     navLabel: "Screens",
     arrowsHint: "← →",
   },
+  buttons: {
+    viewWork: "./view-work",
+    downloadCv: "download cv.pdf",
+    liveDemo: "live demo",
+    code: "code",
+    viewCode: "view code",
+    copy: "copy",
+    copied: "copied",
+    cdRoles: "cd roles ↓",
+  },
+  a11y: {
+    opensInNewTab: "(opens in new tab)",
+  },
   labels: {
     photo: "photo.jpg",
     status: "status",
@@ -38,6 +51,7 @@ export const ui = {
       ai: "ai",
       tools: "tools",
     },
+    learning: "learning",
     direct: "direct",
     profile: "01 / profile",
     code: "02 / code",
@@ -47,5 +61,12 @@ export const ui = {
   terminal: {
     highlights: "$ cat highlights.md",
     lookingFor: "$ ahsan --looking-for",
+  },
+  /** Keys of the looking-for rows; values come from contact.ts. */
+  lookingFor: {
+    role: "role",
+    working: "working",
+    based: "based",
+    visa: "visa",
   },
 } as const;

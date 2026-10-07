@@ -9,6 +9,10 @@ export const identity: Identity = {
   location: "Stoke-on-Trent, UK",
   status:
     "Open to full-time roles. Eligible to work in the UK without sponsorship. Open to hybrid working.",
+  statusDetails: [
+    "Eligible to work in the UK without sponsorship.",
+    "Open to hybrid working.",
+  ],
   statusShort: "Open to roles",
   email: "ahsanullahdaud@gmail.com",
   linkedin: "https://www.linkedin.com/in/ahsan-ullah-daud-ba7647200",
