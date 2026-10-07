@@ -9,10 +9,13 @@ type ScreenProps = {
   children: ReactNode;
 };
 
+// Rows are `1fr`, i.e. minmax(auto, 1fr): equal when the content allows, and a row whose
+// content needs more height takes it from the others instead of overflowing. Below-the-fold
+// grids use the fixed row height as a minimum so rows 1-3 fill the window exactly.
 const rowsClass = {
-  2: "lg:h-full lg:grid-rows-[repeat(2,minmax(0,1fr))]",
-  3: "lg:h-full lg:grid-rows-[repeat(3,minmax(0,1fr))]",
-  belowFold: "lg:grid-rows-[repeat(3,var(--row-3))]",
+  2: "lg:h-full lg:grid-rows-[repeat(2,1fr)]",
+  3: "lg:h-full lg:grid-rows-[repeat(3,1fr)]",
+  belowFold: "lg:grid-rows-[repeat(3,minmax(var(--row-3),auto))]",
 } as const;
 
 /** The card grid: one column on phones, 6 on tablets, 12 with window-filling rows on laptops. */

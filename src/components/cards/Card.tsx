@@ -18,13 +18,17 @@ const variantClass = {
   featured: "border-accent-line p-5",
 } as const;
 
-/** Surface card: 1px border, 10px radius, label at the top and content pushed to the bottom. */
+/**
+ * Surface card: 1px border, 10px radius, label at the top and content pushed to the
+ * bottom. Keeps the default `min-height: auto` so a grid row can never be shorter than
+ * the card's content.
+ */
 export function Card({ variant = "default", as: Tag = "div", id, className, children }: CardProps) {
   return (
     <Tag
       id={id}
       className={cn(
-        "flex min-h-0 flex-col justify-between gap-4 rounded-card border bg-surface scroll-mt-3",
+        "flex flex-col justify-between gap-3 rounded-card border bg-surface scroll-mt-3",
         variantClass[variant],
         className,
       )}
