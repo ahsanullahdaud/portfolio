@@ -81,6 +81,36 @@
   --radius-dock: 8px;
   --radius-ui: 6px;
 
+  /* Display sizes (PLAN.md §8.3): clamp(min, min(Xvw, Yvh), max). Y = max / 900, so the
+     maximum is reached at 1440×900 and sizes shrink on short windows as well as narrow
+     ones. Each token carries its line height and tracking. */
+  --text-name: clamp(46px, min(5.3vw, 8.4vh), 76px);
+  --text-name--line-height: 0.98;
+  --text-name--letter-spacing: -0.03em;
+  --text-talk: clamp(60px, min(8.3vw, 13.3vh), 120px);
+  --text-talk--line-height: 0.92;
+  --text-talk--letter-spacing: -0.03em;
+  --text-title-xl: clamp(40px, min(4.4vw, 7.1vh), 64px);
+  --text-title-xl--line-height: 1;
+  --text-title-xl--letter-spacing: -0.02em;
+  --text-stat: clamp(36px, min(3.9vw, 6.2vh), 56px);
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.02em;
+  --text-title-lg: clamp(32px, min(3vw, 4.9vh), 44px);
+  --text-title-lg--line-height: 1;
+  --text-title-lg--letter-spacing: -0.02em;
+  --text-title-md: clamp(22px, min(2.8vw, 4.4vh), 40px);
+  --text-title-md--line-height: 1.05;
+  --text-title-md--letter-spacing: -0.02em;
+  --text-title-sm: clamp(24px, min(2.2vw, 3.6vh), 32px);
+  --text-title-sm--line-height: 1.1;
+  --text-title-sm--letter-spacing: -0.01em;
+  --text-status: clamp(22px, min(2.1vw, 3.3vh), 30px);
+  --text-status--line-height: 1.1;
+  --text-status--letter-spacing: -0.01em;
+  --text-lead: clamp(17px, min(1.4vw, 2.2vh), 20px);
+  --text-lead--line-height: 1.4;
+
   --default-transition-duration: var(--dur-1);
   --default-transition-timing-function: var(--ease);
 }

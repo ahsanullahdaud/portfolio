@@ -14,7 +14,7 @@ export function StatCard({ label, stat, className }: StatCardProps) {
     <Card as="section" className={className}>
       <CardLabel>{label}</CardLabel>
       <div>
-        <p className="font-display text-[clamp(36px,3.9vw,56px)] font-bold leading-none tracking-[-0.02em] text-fg">
+        <p className="font-display text-stat font-bold text-fg">
           {stat.value}
         </p>
         <p className="mt-1.5 font-mono text-xs leading-snug text-muted">{stat.caption}</p>

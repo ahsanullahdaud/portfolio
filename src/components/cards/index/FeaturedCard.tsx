@@ -18,7 +18,7 @@ export function FeaturedCard({ className }: { className?: string }) {
     <Card as="section" variant="featured" className={className}>
       <CardLabel right={<span className="text-ok">{ui.labels.live}</span>}>{ui.labels.featured}</CardLabel>
       <div className="flex flex-col gap-2.5">
-        <h2 className="font-display text-[clamp(24px,2.8vw,40px)] font-bold leading-[1.05] tracking-[-0.02em] text-fg">
+        <h2 className="font-display text-title-md font-bold text-fg">
           {project.name}
         </h2>
         <p className="font-sans text-[15px] leading-normal text-fg-2">{project.oneLine}</p>

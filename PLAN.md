@@ -88,12 +88,12 @@ Common rules:
 | Card | Cols | Rows | Content (verbatim from CONTENT.md unless marked chrome) |
 |---|---|---|---|
 | Hero (`<h1>` = name) | 1–6 | 1–2 | 32px padding. Top: prompt line `~/ahsan $ whoami`. Name on two lines, "Ahsan Ullah" / "Daud", 76px, cursor after "Daud". Title "Full-Stack Web Developer" in 16px mono, amber text. Tagline at 20px, fg-2. Bottom: primary button `./view-work` → `/work`, secondary button `download cv.pdf` → `/cv.pdf` with `download`. |
-| Photo | 7–9 | 1 | Label `photo.jpg`. The photo fills the rest of the card: `next/image` with `fill`, `object-fit: cover`, 8px radius, surface-2 frame, `priority`, alt = the name. |
+| Photo | 7–9 | 1 | Label `photo.jpg`. A surface-2 frame (8px radius) fills the rest of the card. On laptops the frame is wide and short, so a square as tall as the frame holds the photo cropped from the top (`object-position: top`): the whole head is always visible and the frame shows at the sides. On tablets the frame is 3:4, the photo's own ratio, and shows it in full. `next/image` with `fill`, `priority`, alt = the name. Not rendered on phones. |
 | Status | 10–12 | 1 | Label `status`. `ok` dot + "Open to roles" (the Status (short) line) at 30px display. Three muted lines: "Stoke-on-Trent, UK" / "Eligible to work in the UK without sponsorship." / "Open to hybrid working." |
 | Featured | 7–12 | 2 | Amber border. Label row: `featured project` left, `live` in `ok` right. "Creator Match" at 40px. The One line sentence ("Turns a brand brief into ten scored YouTube creators, each with reasons, concerns and a draft outreach message, in about 12 seconds.") in fg-2. Bottom row: chips Next.js 16, TypeScript, Gemini API (structured outputs), Vercel on the left; `live demo` (primary) → live URL and `code` (secondary) → repo URL on the right. |
 | Stat × 4 | 1–3, 4–6, 7–9, 10–12 | 3 | Label top, 56px number, one muted caption line. `experience` / `3 yrs` / "commercial experience". `support` / `10+` / "out-of-hours production incidents resolved · 4-hour support response target". `creator match` / `~8 h` / "from plan to live product on Creator Match". `tests` / `158` / "automated tests on Creator Match". |
 
-Fit, verified with screenshots at 1440×900, 1366×768 and 390×844 in both themes (step 7): at 1440×900 the three rows are equal and the grid fills the window. At 1366×768 the featured card needs more than a third of the height, so its row grows to about 243px and the other two shrink to about 182px and 166px; nothing is clipped and no scrollbar appears. The featured card's bottom row wraps when chips and buttons do not fit on one line (below roughly 1500px wide): chips stay left on the first line and the buttons sit right-aligned on the next. Card internals use 12px gaps (10px inside the featured card) to make this fit; the name is never shrunk.
+Fit, verified with screenshots in both themes at 1920×880, 1920×950, 1536×730, 1440×900, 1366×768 and 390×844: Index fills the window with no scrollbar at every laptop size. Display type scales with viewport height as well as width (section 8.3), so short windows get smaller type rather than overflow. Where the featured card still needs more than a third of the height, its row grows and the other two shrink; nothing is clipped. The featured card's bottom row wraps when chips and buttons do not fit on one line: chips stay left on the first line and the buttons sit right-aligned on the next. Card internals use 12px gaps (10px inside the featured card). The name never drops below 46px.
 
 ### 5.2 Work — `/work` — 12 columns × 3 equal rows, then rows below the fold
 
@@ -260,21 +260,21 @@ Non-text amber in light mode is the only weak spot: `#F2B544` on white is 1.8:1 
 
 ### 8.3 Type scale
 
-Fonts: `--font-mono` IBM Plex Mono 400/500/600; `--font-display` Space Grotesk 500/700; `--font-sans` IBM Plex Sans 400/500. All `display: swap`. Display sizes are maxima at 1440×900 and scale with `clamp()`.
+Fonts: `--font-mono` IBM Plex Mono 400/500/600; `--font-display` Space Grotesk 500/700; `--font-sans` IBM Plex Sans 400/500. All `display: swap`. Display sizes are maxima at 1440×900. Each is a Tailwind text token in `globals.css` (`text-name`, `text-stat`, …) defined as `clamp(min, min(Xvw, Yvh), max)` with Y = max / 900, so sizes shrink on short windows as well as narrow ones and the Index never needs to scroll. The tokens carry their line height and tracking.
 
-| Element | Max | Fluid value | Line height | Tracking | Font |
+| Element | Max | Token and value | Line height | Tracking | Font |
 |---|---|---|---|---|---|
-| Name on Index | 76px | `clamp(46px, 5.3vw, 76px)` | 0.98 | -0.03em | display 700 |
-| "Let's talk." | 120px | `clamp(60px, 8.3vw, 120px)` | 0.92 | -0.03em | display 700 |
-| Creator Match title on Work; "03" and "6" counts | 64px | `clamp(40px, 4.4vw, 64px)` | 1.0 | -0.02em | display 700 |
-| Stat numbers | 56px | `clamp(36px, 3.9vw, 56px)` | 1.0 | -0.02em | display 700 |
-| "2026 CV" | 44px | `clamp(32px, 3vw, 44px)` | 1.0 | -0.02em | display 700 |
-| Creator Match title on Index; the email address | 40px | `clamp(22px, 2.8vw, 40px)` | 1.05 | -0.02em | display 700 |
-| LinkedIn / GitHub / CV titles | 32px | `clamp(24px, 2.2vw, 32px)` | 1.1 | -0.01em | display 700 |
-| "Open to roles" (status heading) | 30px | `clamp(22px, 2.1vw, 30px)` | 1.1 | -0.01em | display 700 |
+| Name on Index | 76px | `text-name` = `clamp(46px, min(5.3vw, 8.4vh), 76px)` | 0.98 | -0.03em | display 700 |
+| "Let's talk." | 120px | `text-talk` = `clamp(60px, min(8.3vw, 13.3vh), 120px)` | 0.92 | -0.03em | display 700 |
+| Creator Match title on Work; "03" and "6" counts | 64px | `text-title-xl` = `clamp(40px, min(4.4vw, 7.1vh), 64px)` | 1.0 | -0.02em | display 700 |
+| Stat numbers | 56px | `text-stat` = `clamp(36px, min(3.9vw, 6.2vh), 56px)` | 1.0 | -0.02em | display 700 |
+| "2026 CV" | 44px | `text-title-lg` = `clamp(32px, min(3vw, 4.9vh), 44px)` | 1.0 | -0.02em | display 700 |
+| Creator Match title on Index; the email address | 40px | `text-title-md` = `clamp(22px, min(2.8vw, 4.4vh), 40px)` | 1.05 | -0.02em | display 700 |
+| LinkedIn / GitHub / CV titles | 32px | `text-title-sm` = `clamp(24px, min(2.2vw, 3.6vh), 32px)` | 1.1 | -0.01em | display 700 |
+| "Open to roles" (status heading) | 30px | `text-status` = `clamp(22px, min(2.1vw, 3.3vh), 30px)` | 1.1 | -0.01em | display 700 |
 | Project 02 title | 28px | fixed | 1.15 | -0.01em | display 700 |
 | Project 03 title, role titles, day-job title, education titles | 24px | fixed | 1.2 | -0.01em | display 700 |
-| Tagline, Contact sub-line | 20px | `clamp(17px, 1.4vw, 20px)` | 1.4 | 0 | display 500, fg-2 |
+| Tagline, Contact sub-line | 20px | `text-lead` = `clamp(17px, min(1.4vw, 2.2vh), 20px)` | 1.4 | 0 | display 500, fg-2 |
 | Hero title ("Full-Stack Web Developer") | 16px | fixed | 1.4 | 0 | mono 500, accent-text |
 | Paragraphs, bullets, descriptions | 15px | fixed | 1.6 | 0 | sans 400 |
 | Prompt line, list rows, terminal blocks, dock, buttons | 14px / 13px | fixed | 1.5 | 0 | mono 400/500 |

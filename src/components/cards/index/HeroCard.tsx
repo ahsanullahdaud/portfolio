@@ -30,14 +30,14 @@ export function HeroCard({ className }: { className?: string }) {
             className="size-16 shrink-0 rounded-[8px] object-cover object-[center_30%] sm:hidden"
           />
         </div>
-        <h1 className="font-display text-[clamp(46px,5.3vw,76px)] font-bold leading-[0.98] tracking-[-0.03em] text-fg">
+        <h1 className="font-display text-name font-bold text-fg">
           {firstLine}
           <br />
           {lastLine}
           <Cursor />
         </h1>
         <p className="font-mono text-base font-medium text-accent-text">{identity.title}</p>
-        <p className="max-w-prose font-display text-[clamp(17px,1.4vw,20px)] font-medium leading-snug text-fg-2">
+        <p className="max-w-prose font-display text-lead font-medium text-fg-2">
           {identity.tagline}
         </p>
       </div>

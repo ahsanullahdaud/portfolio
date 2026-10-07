@@ -9,7 +9,7 @@ export function StatusCard({ className }: { className?: string }) {
     <Card as="section" className={className}>
       <CardLabel>{ui.labels.status}</CardLabel>
       <div className="flex flex-col gap-2">
-        <h2 className="flex items-center gap-2.5 font-display text-[clamp(22px,2.1vw,30px)] font-bold leading-[1.1] tracking-[-0.01em] text-fg">
+        <h2 className="flex items-center gap-2.5 font-display text-status font-bold text-fg">
           <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full bg-ok" />
           {identity.statusShort}
         </h2>
