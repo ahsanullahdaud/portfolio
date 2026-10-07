@@ -133,7 +133,7 @@ The AI-first card is dropped: the two rows are full, and both of its sentences a
 | Looking for | 6–9 | 3 | Terminal block headed `$ ahsan --looking-for`, then aligned key/value rows with keys in `ok` (keys are chrome, values verbatim fragments): `role` → "full-stack and AI engineering roles in the UK"; `working` → "Open to hybrid working."; `based` → "Stoke-on-Trent, UK"; `visa` → "Eligible to work in the UK without sponsorship." |
 | This site | 10–12 | 3 | Label `this site`. Three lines (chrome, true of this site): "built with Claude Code" / "Next.js, TypeScript, Tailwind CSS" / "hosted on Vercel". Copyright line "© 2026 Ahsan Ullah Daud". |
 
-No contact form. Fit at 1366×768: "Let's talk." at 113px × 2 lines × 0.92 ≈ 208px inside a 616px hero; the email at ≈ 38px is ≈ 500px wide in a ≈ 728px card.
+No contact form. The three link cards are anchors themselves and show `↗` (or `↓` for the CV) at the right of the label row as the new-tab or download cue. The looking-for block lists only facts CONTENT.md has: role, working, based, visa. There is no start-date or notice-period row. Fit, verified with screenshots in both themes (step 10): the three rows fill the window at 1920×880, 1440×900 and 1366×768 with no scrollbar; at 390px the column stacks hero, email, LinkedIn, GitHub, CV, looking-for, this site.
 
 ### 5.5 Not found — any other URL
 

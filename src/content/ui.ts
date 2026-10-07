@@ -36,6 +36,21 @@ export const ui = {
     commercial: "commercial",
     projects: "projects",
   },
+  /** Titles of the Contact action cards; the service names appear in CONTENT.md's Contact actions. */
+  contactCards: {
+    linkedin: "LinkedIn",
+    github: "GitHub",
+    cv: "CV",
+  },
+  glyphs: {
+    newTab: "↗",
+    download: "↓",
+  },
+  /** The "this site" card: facts about this site itself. */
+  site: {
+    lines: ["built with Claude Code", "Next.js, TypeScript, Tailwind CSS", "hosted on Vercel"],
+    copyright: (year: number, name: string) => `© ${year} ${name}`,
+  },
   a11y: {
     opensInNewTab: "(opens in new tab)",
   },
