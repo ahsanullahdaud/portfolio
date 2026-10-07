@@ -41,7 +41,7 @@ CLAUDE.md             this file
 public/photo.jpg      433×577 portrait, used by next/image
 public/cv.pdf         two-page CV, served as a download
 src/app/              routes: / (Index), /work, /stack, /contact, not-found, layout, template, globals.css, icon.svg, robots.ts, sitemap.ts
-src/components/shell/ PathBar, Dock, DockItem, ThemeToggle, KeyboardNav, CommandPalette, Screen, ScreenHeading, Prompt, Cursor
+src/components/shell/ PathBar, ScreenName, Dock, DockItem, useScreen, ThemeToggle, KeyboardNav, CommandPalette, Screen, PromptLine, Cursor
 src/components/cards/ Card, CardLabel, Chip, StatCard and one component per card type
 src/components/ui/    Button, ExternalLink
 src/content/          typed content modules transcribed from CONTENT.md, plus screens.ts, ui.ts, palette.ts
@@ -52,7 +52,7 @@ src/lib/              cn.ts, keys.ts
 
 **TypeScript.** Strict mode. No `any`, no non-null assertions without a comment. Content modules are typed against `src/content/types.ts` and export plain objects and arrays.
 
-**Components.** Server components by default. `'use client'` only where the browser is needed: `ThemeToggle`, `KeyboardNav`, `CommandPalette`, `CopyButton`. Keep client components leaf-sized and pass content in as props. One component per file, PascalCase file names, props typed inline above the component. Hooks are `useX.ts`.
+**Components.** Server components by default. `'use client'` only where the browser is needed: `ThemeToggle`, `KeyboardNav`, `CommandPalette`, `CopyButton`, and the two pieces that read the URL, `DockItem` and `ScreenName` (through the `useScreen` hook). Keep client components leaf-sized and pass content in as props. One component per file, PascalCase file names, props typed inline above the component. Hooks are `useX.ts`.
 
 **Routing.** Four pages plus 404. Navigation uses `next/link` for anchors and `router.push` for keyboard and palette navigation so URLs stay real. The active dock item has `aria-current="page"`. Hash ids on Work cards (`creator-match`, `price-comparison`, `cyber-security-assessment`, `ezsoft-2025`, `ezsoft-2021`) are stable; do not rename them.
 

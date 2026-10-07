@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { ThemeToggle } from "@/components/shell/ThemeToggle";
+import { Dock } from "@/components/shell/Dock";
+import { PathBar } from "@/components/shell/PathBar";
 import "./globals.css";
 
 const plexMono = IBM_Plex_Mono({
@@ -36,6 +37,8 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "#edf0f3" },
     { media: "(prefers-color-scheme: dark)", color: "#0d1117" },
   ],
+  // Lets the dock pad itself above the home indicator on phones.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -45,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${plexMono.variable} ${plexSans.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="min-h-full">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -53,16 +56,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           storageKey="ahsan-theme"
           disableTransitionOnChange
         >
-          {/* Temporary header for step 3; the PathBar replaces it in step 4. */}
-          <header className="flex h-11 items-center justify-between border-b border-line bg-surface px-5 font-mono text-sm">
-            <span>
-              <span className="text-ok">~/ahsan</span>{" "}
-              <span className="text-accent-text">$</span>{" "}
-              <span className="text-fg">portfolio</span>
-            </span>
-            <ThemeToggle />
-          </header>
-          {children}
+          {/* Shell (PLAN.md §3): path bar, scrolling screen area, dock. Page padding 20px
+              (12px on phones), 12px gaps (10px on phones). */}
+          <div className="flex h-dvh flex-col gap-2.5 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:gap-3 sm:p-5 sm:pb-5">
+            <PathBar />
+            <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</main>
+            <Dock />
+          </div>
         </ThemeProvider>
       </body>
     </html>

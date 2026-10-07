@@ -51,7 +51,7 @@ Content source: `CONTENT.md`. Design source: `design/MOCKUP_SPEC.md`.
 
 - Page padding 20px. 12px between path bar, grid and dock. Grid gap 12px.
 - Grid height is `calc(100dvh - 152px)` (20 + 44 + 12 above, 12 + 44 + 20 below). Rows are `repeat(n, minmax(0, 1fr))` with n = 3 on Index, Work and Contact and n = 2 on Stack. The grid container has `overflow-y: auto` and `overscroll-behavior: contain`; on Work the rows after the third are `auto` height and reached by scrolling, while the bars stay fixed.
-- Path bar: 44px surface card, 10px radius. Left: a 10px amber dot (`--accent-line`), `~/ahsan/portfolio` in muted mono, then the current screen name in fg. Right: `press [Ctrl K] for commands` (hidden below 640px) and the theme toggle; below 640px a palette icon button with an `aria-label` replaces the hint.
+- Path bar: 44px surface card, 10px radius. Left: a 10px amber dot (`--accent-line`), `~/ahsan/portfolio` in muted mono, then the current screen name in fg. Right: the theme toggle and, from step 11 when the palette exists, `press [Ctrl K] for commands` (hidden below 640px, where a palette icon button with an `aria-label` replaces it).
 - Dock: centred row of four items, 44px high, 8px radius, number then label (`1 index`, `2 work`, `3 stack`, `4 contact`). Active item: `primary` fill with bold `primary-fg` text (amber with dark text in dark mode, `#10161D` with white text in light mode) and `aria-current="page"`. Others: surface with a line border, number in muted. A `← →` hint sits right of the dock at ≥640px.
 - Cards: surface background, 1px line border, 10px radius, 20px padding (32px on the Index hero and Contact hero). Most cards are a flex column with the label row at the top and the main content pushed to the bottom (`justify-content: space-between`). Featured cards (Index featured, Work Creator Match, Contact email) have a 1px amber border (`--accent-line`) instead of line.
 - Prompt line: inside the first card of each screen. `~/ahsan` in `ok`, `$` in amber text, the command in fg, in 14px mono.
@@ -175,8 +175,10 @@ src/app/icon.svg                   favicon: amber block cursor on the page backg
 src/app/robots.ts, sitemap.ts      static metadata routes
 
 src/components/shell/
-  PathBar.tsx                      amber dot, ~/ahsan/portfolio, screen name, Ctrl K hint / palette button, ThemeToggle
-  Dock.tsx, DockItem.tsx           <nav aria-label="Screens">, aria-current="page" on the active item
+  PathBar.tsx                      amber dot, ~/ahsan/portfolio, ScreenName, Ctrl K hint / palette button (step 11), ThemeToggle
+  ScreenName.tsx *                 current screen name from the URL
+  Dock.tsx, DockItem.tsx *         <nav aria-label="Screens">; DockItem reads the URL to set aria-current="page"
+  useScreen.ts *                   usePathname → matching Screen; used by DockItem and ScreenName
   ThemeToggle.tsx  *               sun/moon inline SVG; aria-label says what it switches to
   KeyboardNav.tsx  *               no UI; global keydown → router.push
   CommandPalette.tsx *             dialog + input + grouped list
@@ -338,7 +340,7 @@ Write the section 8 tokens into `globals.css`, including the light-mode amber ru
 Done when the heading renders with the display font in both themes, amber text is `#8A5200` in light mode, the toggle persists across reloads, there is no flash on load, and the system setting is respected on first visit.
 
 ### Step 4 — Shell: path bar, dock, screens
-`PathBar`, `Dock`, `DockItem`, `Screen` (12-column, window-fill rows, inner scroll), `PromptLine`, `Cursor`; four route files each rendering a first card with its prompt line and placeholder cards; phone layout with the pinned dock bar. Commit `feat: shell with path bar, dock and four screens`.
+`PathBar`, `ScreenName`, `Dock`, `DockItem`, `useScreen`, `Screen` (12-column, window-fill rows, inner scroll), `PromptLine`, `Cursor`; the `Card` and `CardLabel` primitives and the `screens`, `ui` and `identity` content modules, since the shell needs them; four route files each rendering a first card with its prompt line and placeholder cards at their final grid positions; phone layout with the pinned dock bar. Commit `feat: shell with path bar, dock and four screens`.
 Done when all four URLs work by dock click and browser back/forward, the active dock item is marked, the grid fills the window at 1366×768, and the phone layout stacks with the dock reachable.
 
 ### Step 5 — Keyboard navigation and screen transitions
@@ -346,7 +348,7 @@ Done when all four URLs work by dock click and browser back/forward, the active 
 Done when `1`–`4` and `←` `→` switch screens, nothing fires while typing in an input, and the animation is off under reduced motion.
 
 ### Step 6 — Content layer and card primitives
-Transcribe `CONTENT.md` into typed modules in `src/content/`; build `Card`, `CardLabel`, `Chip`, `Button`, `ExternalLink`, `StatCard`, `TerminalBlock`, `ListRows`. Review the content modules against `CONTENT.md` line by line. Commit `feat: typed content modules and card primitives`.
+Transcribe the rest of `CONTENT.md` into typed modules in `src/content/` (`identity`, `screens` and `ui` exist from step 4); build `Chip`, `Button`, `ExternalLink`, `StatCard`, `TerminalBlock`, `ListRows` (`Card` and `CardLabel` exist from step 4). Review the content modules against `CONTENT.md` line by line. Commit `feat: typed content modules and card primitives`.
 Done when the build and then `tsc` pass and a placeholder grid renders a stat card, a chip and a terminal block in both themes.
 
 ### Step 7 — Index screen
