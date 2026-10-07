@@ -314,7 +314,7 @@ Fonts: `--font-mono` IBM Plex Mono 400/500/600; `--font-display` Space Grotesk 5
 
 Prerequisites verified on this machine: Node 26.9, npm 11 (no pnpm), git 2.45, `gh` 2.102 logged in as `ahsanullahdaud`. No Vercel CLI; deploys use the Vercel GitHub integration. You need a Vercel account linked to GitHub before step 2. The folder already holds `CONTENT.md`, `cv.pdf` (current, two pages), `photo.jpg` (433×577), `design/MOCKUP_SPEC.md`, and a duplicate `MOCKUP_SPEC.md` at the root that is byte-identical to the one in `design/`.
 
-Every step ends with: `npm run lint`, `npx tsc --noEmit`, `npm run build` passing; a check in Chrome at 1366×768 and 390×844 in both themes; one commit; `git push` (from step 2 on, that redeploys).
+Every step ends with: `npm run lint`, `npm run build`, then `npx tsc --noEmit` passing (the type check needs the types a build generates); a check in Chrome at 1366×768 and 390×844 in both themes; one commit; `git push` (from step 2 on, that redeploys).
 
 ### Step 1 — Scaffold and assets
 1. `create-next-app` refuses a folder with unknown files, so scaffold beside the project and move it in:
@@ -348,7 +348,7 @@ Done when `1`–`4` and `←` `→` switch screens, nothing fires while typing i
 
 ### Step 6 — Content layer and card primitives
 Transcribe `CONTENT.md` into typed modules in `src/content/`; build `Card`, `CardLabel`, `Chip`, `Button`, `ExternalLink`, `StatCard`, `TerminalBlock`, `ListRows`. Review the content modules against `CONTENT.md` line by line. Commit `feat: typed content modules and card primitives`.
-Done when `tsc` passes and a placeholder grid renders a stat card, a chip and a terminal block in both themes.
+Done when the build and then `tsc` pass and a placeholder grid renders a stat card, a chip and a terminal block in both themes.
 
 ### Step 7 — Index screen
 `HeroCard` (name at 76px with cursor, two buttons), `PhotoCard`, `StatusCard`, `FeaturedCard`, four `StatCard`s; the phone variant with the 64px photo inside the hero. Check the window fit at 1440×900, 1366×768 and 1280×720 and apply the 5.1 fallback order only if needed. Commit `feat: index screen`.

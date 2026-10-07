@@ -16,10 +16,10 @@ Personal developer portfolio of Ahsan Ullah Daud. Static Next.js site, terminal 
 
 ```
 npm run dev          # dev server with Turbopack at http://localhost:3000
-npm run build        # production build; must pass before every push
-npm run start        # serve the production build locally
 npm run lint         # eslint
-npx tsc --noEmit     # type check
+npm run build        # production build; must pass before every push
+npx tsc --noEmit     # type check; run after a build, which generates the Next types
+npm run start        # serve the production build locally
 git push             # pushes main; Vercel redeploys automatically
 gh repo view --web   # open the GitHub repo
 ```
@@ -86,7 +86,7 @@ Keep this table, PLAN.md §4 and `src/lib/keys.ts` in sync.
 
 ## Definition of done for every step
 
-- `npm run lint`, `npx tsc --noEmit` and `npm run build` pass with no warnings introduced.
+- `npm run lint`, `npm run build`, then `npx tsc --noEmit` pass with no warnings introduced (the type check needs the types a build generates).
 - Checked in Chrome at 1366×768 and 390×844, light and dark, with reduced motion once.
 - Keyboard-only walk of whatever changed; focus is visible at every stop.
 - No new runtime requests to third parties (check the Network tab).
