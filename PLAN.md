@@ -331,8 +331,7 @@ Every step ends with: `npm run lint`, `npm run build`, then `npx tsc --noEmit` p
 ### Step 2 — First deploy
 1. `gh repo create portfolio --public --source=. --remote=origin --push --description "Personal developer portfolio of Ahsan Ullah Daud, Full-Stack Web Developer"`.
 2. On vercel.com: Add New → Project → Import `ahsanullahdaud/portfolio` → framework Next.js (auto) → Deploy. No environment variables.
-3. Paste the production URL into `CLAUDE.md` (Deploy section) and later into `src/content/identity.ts` as `siteUrl`.
-   Done when the production URL shows the step 1 heading and a push to `main` triggers a new deployment.
+3. Done 2026-10-07. Production URL: https://ahsanullahdaud.vercel.app (recorded in `CLAUDE.md`; goes into `src/content/identity.ts` as `siteUrl` in step 6). The URL returned the step 1 heading without authentication and a push to `main` produced a new deployment.
 
 ### Step 3 — Tokens, fonts, theme toggle
 Write the section 8 tokens into `globals.css`, including the light-mode amber rule (`--accent-text`, `--accent-line`, `--primary`); load the three fonts in `layout.tsx`; add `next-themes`, `ThemeProvider` and `ThemeToggle` in a temporary header. Commit `feat: theme tokens, fonts and theme toggle`.
@@ -371,7 +370,7 @@ Done when every action works, the copy button announces `copied`, the CV downloa
 Done when `Ctrl K`, `⌘ K` and `/` open it, filtering and arrow keys work, every item navigates or opens correctly, focus is trapped and restored, and `Esc` closes it.
 
 ### Step 12 — Metadata and polish
-`metadata` in `layout.tsx` (title "Ahsan Ullah Daud — Full-Stack Web Developer", description = Tagline, `metadataBase` = production URL, Open Graph title/description), `icon.svg`, `not-found.tsx`, `robots.ts`, `sitemap.ts`, README with the stack and scripts. Commit `feat: metadata, favicon, 404 and readme`.
+`metadata` in `layout.tsx` (title "Ahsan Ullah Daud — Full-Stack Web Developer", description = Tagline, `metadataBase` = https://ahsanullahdaud.vercel.app, Open Graph title/description), `icon.svg`, `not-found.tsx`, `robots.ts`, `sitemap.ts`, README with the stack and scripts. Commit `feat: metadata, favicon, 404 and readme`.
 
 ### Step 13 — Accessibility and performance pass
 Run Lighthouse and axe DevTools in Chrome on the production URL in both themes; re-confirm the section 8.2 ratios on the rendered site; keyboard-only walk of every screen and the palette; reduced-motion check; 200% zoom and 320px width; inspect the `next build` route table (all routes static) and first-load JS. Fix findings. Commit `a11y: audit fixes` / `perf: …` as needed.
@@ -393,7 +392,7 @@ Decisions taken where the spec and the content rules meet. Each is a one-line ch
 - **"2026 CV"** is chrome in `ui.ts`; update the year when the CV changes.
 - **Light-mode amber borders, dot and cursor.** Resolved: `--accent-line` is `#B87A00` in light mode and `#F2B544` in dark mode (section 8.1).
 - **Root `MOCKUP_SPEC.md`** is a byte-identical duplicate of `design/MOCKUP_SPEC.md`; step 1 deletes the root copy.
-- Repo name `portfolio` → `github.com/ahsanullahdaud/portfolio`. Vercel will assign the production URL; it is recorded after step 2.
+- Repo: `github.com/ahsanullahdaud/portfolio`. Production: https://ahsanullahdaud.vercel.app.
 - `←` `→` switch screens; `↑` `↓` scroll the grid.
 - Contact link cards show the handle taken from each URL rather than the full URL.
 - A Vercel account on the free Hobby plan linked to your GitHub account is assumed to exist at step 2.

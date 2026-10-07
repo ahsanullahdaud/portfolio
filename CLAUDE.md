@@ -29,7 +29,7 @@ Environment: Windows 10, PowerShell. Node 26.9, npm 11 (no pnpm, do not add a pn
 ## Deploy
 
 - Repo: `https://github.com/ahsanullahdaud/portfolio` (public).
-- Production URL: _(fill in after step 2 of PLAN.md)_
+- Production URL: https://ahsanullahdaud.vercel.app
 - Every push to `main` deploys. Pull-request branches get preview URLs. No environment variables exist or are needed.
 
 ## Repo layout
