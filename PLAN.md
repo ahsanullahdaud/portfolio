@@ -100,16 +100,16 @@ Fit, verified with screenshots in both themes at 1920×880, 1920×950, 1536×730
 | Card | Cols | Rows | Content |
 |---|---|---|---|
 | Count (`<h1>` = prompt) | 1–3 | 1 | Prompt line `~/ahsan $ ls projects/` with cursor. "03" at 64px. Caption `projects` in muted (the mockup's "projects, 2024 to 2026" is not used; see §11). |
-| Day job | 1–3 | 2 | Label `day job`. "Full Stack Engineer" at 24px. "EZ Consultants & ERP Solutions (EZsoft)" in fg-2. "March 2025 to present" in muted mono. The role's Stack line in 12px muted mono, wrapping. Link `cd roles ↓` → `#ezsoft-2025` (chrome). |
+| Day job | 1–3 | 2 | Label row: `day job` left, link `cd roles ↓` → `#ezsoft-2025` right (chrome). "Full Stack Engineer" at 24px. "EZ Consultants & ERP Solutions (EZsoft)" in fg-2. "March 2025 to present" in muted mono. The role's Stack line in 11px muted mono, wrapping. |
 | CV | 1–3 | 3 | Label `curriculum vitae`. "2026 CV" at 44px (year lives in `ui.ts`). Button `download cv.pdf` (secondary) → `/cv.pdf` with `download`. |
-| Creator Match, id `creator-match` | 4–12 | 1–2 | Amber border. Two inner columns at ≥1024px, 3:2. Left: label row `work / 01 · 2026` left, `live` in `ok` right. Title "Creator" / "Match" at 64px on two lines. Subtitle "AI creator-matching tool for brands. Personal project." in 13px muted mono. Two sentences in fg-2: the One line sentence and "Built AI-first with Claude Code in about eight hours of working sessions, from plan to production." Nine chips: Next.js 16, React, TypeScript, Tailwind CSS, Gemini API (structured outputs), YouTube Data API v3, Upstash Redis, Vitest, Vercel. Buttons `live demo` (primary) and `view code` (secondary). Right: a terminal block (surface-2) headed `$ cat highlights.md` listing the six Engineering highlights verbatim, each prefixed by `+` in `ok`. |
-| Project 02, id `price-comparison` | 4–8 | 3 | Label `work / 02 · client project`. Title "Price comparison tool" at 28px. The description sentence in fg-2. Chips `React` and `private client` (chrome, muted). Footer in 12px muted mono: "Client is private: no name, link or screenshots." |
+| Creator Match, id `creator-match` | 4–12 | 1–2 | Amber border. Two inner columns at ≥1024px, 3:2. Left: label row `work / 01 · 2026` left, `live` in `ok` right. Title "Creator" / "Match" at 64px on two lines. Subtitle "AI creator-matching tool for brands. Personal project." in 13px muted mono. One 14px paragraph in fg-2 made of two sentences: the One line sentence and "Built AI-first with Claude Code in about eight hours of working sessions, from plan to production." Nine chips: Next.js 16, React, TypeScript, Tailwind CSS, Gemini API (structured outputs), YouTube Data API v3, Upstash Redis, Vitest, Vercel. Buttons `live demo` (primary) and `view code` (secondary). Right: a terminal block (surface-2) headed `$ cat highlights.md` listing the six Engineering highlights verbatim, each prefixed by `+` in `ok`. |
+| Project 02, id `price-comparison` | 4–8 | 3 | Label `work / 02 · client project`. Title "Price comparison tool" at 28px. The description sentence in fg-2 at 14px. Chips `React` and `private client` (chrome, muted). The sentence "Client is private: no name, link or screenshots." is not shown; the chip carries it (see §11). |
 | Project 03, id `cyber-security-assessment` | 9–12 | 3 | Label `work / 03 · 2024, MSc`. Title "Cyber-security exposure assessment" at 24px. The description sentence. Chips ASP.NET MVC, SQL Server. |
 | About | 1–4 | 4 (below the fold) | Label `about`. Three sentences: (1) "Full-stack web developer with three years' commercial experience building and supporting EZsoft, a multi-tenant ERP platform used by clients internationally." (2) "I own features end to end, from a client conversation or rough brief through data model, back end and front end to production deployment, and I stay accountable afterwards." (3) "I also build AI-first with Claude Code, using it across planning, implementation, debugging, testing, refactoring and documentation." Moved here from Index per the spec; see §11. |
 | Role, id `ezsoft-2025` | 5–8 | 4 | Label `experience · March 2025 to present`. Title "Full Stack Engineer" at 24px. Org "EZ Consultants & ERP Solutions (EZsoft)". Place "Remote (Islamabad-based software house serving clients internationally)". One-line summary = bullet 1 ("Build and maintain EZsoft, a multi-tenant ERP web platform across finance, HR, payroll, sales, stock and POS modules."). Eleven chips from the Stack line. `<details>` with summary `show 7 more` (chrome) revealing bullets 2 to 8. |
 | Role, id `ezsoft-2021` | 9–12 | 4 | Label `experience · February 2021 to July 2022`. Title "Software Developer" at 24px. Same org. Place "Islamabad, Pakistan (on-site)". One-line summary = bullet 1 ("Junior developer across the full stack of the EZsoft ERP product."). Five chips. `<details>` with summary `show 3 more` revealing bullets 2 to 4. |
 
-Rows 1 to 3 fill the window; row 4 is `auto` height below it. Role cards use native `<details>`/`<summary>` (keyboard accessible, no JavaScript, content present for search engines). Fit budget at 1366×768: the Creator Match left column is at the limit (title 2 × 60px, subtitle, two sentences, two rows of chips, buttons ≈ 400px in a 406px card). Fallback order: chips to 10px, then the subtitle line drops, then rows switch to `auto` and the grid scrolls, which the spec allows on Work.
+Rows 1 to 3 fill the window; row 4 is `auto` height below it. Role cards use native `<details>`/`<summary>` (keyboard accessible, no JavaScript, content present for search engines). Fit, verified with screenshots in both themes (step 8): at 1920×880 and 1440×900 rows 1 to 3 fill the window exactly. At 1366×768 the MSc project's description makes row 3 taller than its third, so the bottom of row 3 sits a little below the fold and is reached by the same scroll that reaches row 4; the spec allows Work to scroll. Phones stack in the §5.6 order.
 
 ### 5.3 Stack — `/stack` — 12 columns × 2 equal rows, fills the window
 
@@ -272,8 +272,8 @@ Fonts: `--font-mono` IBM Plex Mono 400/500/600; `--font-display` Space Grotesk 5
 | Creator Match title on Index; the email address | 40px | `text-title-md` = `clamp(22px, min(2.8vw, 4.4vh), 40px)` | 1.05 | -0.02em | display 700 |
 | LinkedIn / GitHub / CV titles | 32px | `text-title-sm` = `clamp(24px, min(2.2vw, 3.6vh), 32px)` | 1.1 | -0.01em | display 700 |
 | "Open to roles" (status heading) | 30px | `text-status` = `clamp(22px, min(2.1vw, 3.3vh), 30px)` | 1.1 | -0.01em | display 700 |
-| Project 02 title | 28px | fixed | 1.15 | -0.01em | display 700 |
-| Project 03 title, role titles, day-job title, education titles | 24px | fixed | 1.2 | -0.01em | display 700 |
+| Project 02 title | 28px | `text-title-28` = 28px | 1.15 | -0.01em | display 700 |
+| Project 03 title, role titles, day-job title, education titles | 24px | `text-title-24` = 24px | 1.2 | -0.01em | display 700 |
 | Tagline, Contact sub-line | 20px | `text-lead` = `clamp(17px, min(1.4vw, 2.2vh), 20px)` | 1.4 | 0 | display 500, fg-2 |
 | Hero title ("Full-Stack Web Developer") | 16px | fixed | 1.4 | 0 | mono 500, accent-text |
 | Paragraphs, bullets, descriptions | 15px | fixed | 1.6 | 0 | sans 400 |
@@ -377,6 +377,8 @@ Done when `Ctrl K`, `⌘ K` and `/` open it, filtering and arrow keys work, ever
 ### Step 13 — Accessibility and performance pass
 Run Lighthouse and axe DevTools in Chrome on the production URL in both themes; re-confirm the section 8.2 ratios on the rendered site; keyboard-only walk of every screen and the palette; reduced-motion check; 200% zoom and 320px width; inspect the `next build` route table (all routes static) and first-load JS. Fix findings. Commit `a11y: audit fixes` / `perf: …` as needed.
 
+Parked from step 7: Index still overflows by about 15px at roughly 1920×880 (featured row grows past its third); fix by making rows strictly equal and verify with a height sweep from 700 to 1000.
+
 ### Step 14 — Final deploy and handover
 Push, confirm the production deployment in both themes on a phone, confirm the repo is public and the README is current. Optional: attach a custom domain in Vercel and update `metadataBase`.
 
@@ -390,6 +392,7 @@ Decisions taken where the spec and the content rules meet. Each is a one-line ch
 - **Email card: `copy` button instead of "click to copy".** The address is a `mailto:` link, so clicking it opens mail; the button next to the label does the copying.
 - **Looking-for rows: four, not three.** `role`, `working`, `based`, `visa`, each a verbatim fragment. The spec's "where" row would have needed a new sentence.
 - **AI-first card dropped from Stack.** The two-row grid is full and both of its sentences already appear on Work.
+- **Private-client note not shown.** Project 02's "Client is private: no name, link or screenshots." would push the card past its row at 1366×768; the muted `private client` chip states the same fact.
 - **Stat captions.** The 4-hour target is folded into the `10+` caption as the spec asks, joined with a `·`. `3 yrs` and `~8 h` are display abbreviations; captions stay verbatim.
 - **"2026 CV"** is chrome in `ui.ts`; update the year when the CV changes.
 - **Light-mode amber borders, dot and cursor.** Resolved: `--accent-line` is `#B87A00` in light mode and `#F2B544` in dark mode (section 8.1).

@@ -21,6 +21,16 @@ export const ui = {
     copied: "copied",
     cdRoles: "cd roles ↓",
   },
+  details: {
+    showMore: (count: number) => `show ${count} more`,
+    showLess: "show less",
+  },
+  captions: {
+    projects: "projects",
+    /** Update when the CV changes. */
+    cvYear: "2026 CV",
+    categories: "categories",
+  },
   a11y: {
     opensInNewTab: "(opens in new tab)",
   },
@@ -40,6 +50,7 @@ export const ui = {
     work01: "work / 01 · 2026",
     work02: "work / 02 · client project",
     work03: "work / 03 · 2024, MSc",
+    privateClient: "private client",
     about: "about",
     experience: "experience",
     education: "education",
