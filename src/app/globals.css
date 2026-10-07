@@ -126,9 +126,17 @@
   }
 }
 
-/* Block cursor blink (used by the Cursor component from step 4). */
+/* Block cursor blink (Cursor component). */
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+/* Screen enter: played by template.tsx on every navigation. */
+@keyframes screen-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
 }

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Dock } from "@/components/shell/Dock";
+import { KeyboardNav } from "@/components/shell/KeyboardNav";
 import { PathBar } from "@/components/shell/PathBar";
 import "./globals.css";
 
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <PathBar />
             <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</main>
             <Dock />
+            <KeyboardNav />
           </div>
         </ThemeProvider>
       </body>
