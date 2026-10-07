@@ -31,6 +31,11 @@ export const ui = {
     cvYear: "2026 CV",
     categories: "categories",
   },
+  /** Labels of the two stack lines on the Stack summary card. */
+  summary: {
+    commercial: "commercial",
+    projects: "projects",
+  },
   a11y: {
     opensInNewTab: "(opens in new tab)",
   },
