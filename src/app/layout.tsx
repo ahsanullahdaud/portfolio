@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { CommandPalette } from "@/components/shell/CommandPalette";
 import { Dock } from "@/components/shell/Dock";
 import { KeyboardNav } from "@/components/shell/KeyboardNav";
 import { PathBar } from "@/components/shell/PathBar";
@@ -58,13 +59,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           disableTransitionOnChange
         >
           {/* Shell (PLAN.md §3): path bar, scrolling screen area, dock. Page padding 20px
-              (12px on phones), 12px gaps (10px on phones). */}
-          <div className="flex h-dvh flex-col gap-2.5 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:gap-3 sm:p-5 sm:pb-5">
+              (12px on phones), 12px gaps (10px on phones). The command palette makes this
+              wrapper inert while it is open, so it lives outside it. */}
+          <div
+            id="shell"
+            className="flex h-dvh flex-col gap-2.5 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:gap-3 sm:p-5 sm:pb-5"
+          >
             <PathBar />
             <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</main>
             <Dock />
             <KeyboardNav />
           </div>
+          <CommandPalette />
         </ThemeProvider>
       </body>
     </html>

@@ -10,6 +10,9 @@ export const keys = {
   close: "Escape",
 } as const;
 
+/** Window event the path-bar button dispatches to toggle the command palette. */
+export const PALETTE_EVENT = "portfolio:palette-toggle";
+
 /** True when a key press would interrupt typing: inputs, textareas, selects, contenteditable. */
 export function isEditableTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false;

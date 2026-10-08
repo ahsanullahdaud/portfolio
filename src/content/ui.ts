@@ -45,6 +45,27 @@ export const ui = {
   glyphs: {
     newTab: "↗",
     download: "↓",
+    /** Palette button on phones, where the text hint is hidden. */
+    palette: ">_",
+  },
+  palette: {
+    title: "command palette",
+    openButton: "open command palette",
+    placeholder: "type a command…",
+    empty: "no matches",
+    close: "close command palette",
+    closeHint: "esc",
+    footer: "↑ ↓ move · enter run · esc close",
+    groups: {
+      screens: "screens",
+      projects: "projects",
+      links: "links",
+      actions: "actions",
+    },
+    items: {
+      email: "email",
+      toggleTheme: "toggle theme",
+    },
   },
   /** The "this site" card: facts about this site itself. */
   site: {

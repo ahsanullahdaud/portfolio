@@ -181,7 +181,8 @@ src/components/shell/
   useScreen.ts *                   usePathname → matching Screen; used by DockItem and ScreenName
   ThemeToggle.tsx  *               sun/moon inline SVG; aria-label says what it switches to
   KeyboardNav.tsx  *               no UI; global keydown → router.push
-  CommandPalette.tsx *             dialog + input + grouped list
+  CommandPalette.tsx *             modal dialog + combobox input + grouped listbox; rendered outside the #shell wrapper, which it makes inert while open
+  PaletteButton.tsx *              path-bar button that dispatches the palette toggle event (text hint ≥640px, `>_` glyph below)
   Screen.tsx                       12-column grid with a `rows` prop (2 or 3), window-fill height, inner scroll
   PromptLine.tsx, Cursor.tsx       prompt inside the first card (ok path, amber $, command); the blinking block
 

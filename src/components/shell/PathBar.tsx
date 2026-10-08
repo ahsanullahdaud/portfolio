@@ -1,8 +1,9 @@
 import { ui } from "@/content/ui";
+import { PaletteButton } from "./PaletteButton";
 import { ScreenName } from "./ScreenName";
 import { ThemeToggle } from "./ThemeToggle";
 
-/** Top bar: amber dot, base path, current screen name, theme toggle. The palette hint arrives in step 11. */
+/** Top bar: amber dot, base path, current screen name; palette button and theme toggle on the right. */
 export function PathBar() {
   return (
     <header className="flex h-11 shrink-0 items-center justify-between gap-4 rounded-card border border-line bg-surface px-4 font-mono text-sm">
@@ -11,7 +12,10 @@ export function PathBar() {
         <span className="truncate text-muted">{ui.pathBar.base}</span>
         <ScreenName />
       </div>
-      <ThemeToggle />
+      <div className="flex shrink-0 items-center gap-2">
+        <PaletteButton />
+        <ThemeToggle />
+      </div>
     </header>
   );
 }
