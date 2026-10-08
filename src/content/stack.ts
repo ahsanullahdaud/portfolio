@@ -9,10 +9,10 @@ export const skillGroups: readonly SkillGroup[] = [
       { name: "JavaScript" },
       { name: "TypeScript" },
       { name: "VB.NET" },
+      { name: "C#" },
       { name: "SQL (T-SQL)" },
       { name: "HTML" },
       { name: "CSS" },
-      { name: "C#", learning: true },
     ],
   },
   {

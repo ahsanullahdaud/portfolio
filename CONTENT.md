@@ -46,7 +46,7 @@ March 2025 to present. Remote (Islamabad-based software house serving clients in
 - Write and tune T-SQL queries and stored procedures for reporting and period-end processes.
 - Modernise legacy screens, review work from junior developers and document systems.
 
-Stack: ASP.NET MVC, VB.NET, .NET Framework, SQL Server, T-SQL, JavaScript, jQuery, Bootstrap, Razor, Git, JIRA.
+Stack: ASP.NET MVC, VB.NET, C#, .NET Framework, SQL Server, T-SQL, JavaScript, jQuery, Bootstrap, Razor, Git, JIRA.
 
 ### Software Developer, EZ Consultants & ERP Solutions (EZsoft)
 February 2021 to July 2022. Islamabad, Pakistan (on-site).
@@ -56,7 +56,7 @@ February 2021 to July 2022. Islamabad, Pakistan (on-site).
 - Wrote SQL queries, views and stored procedures for data entry, validation and reporting.
 - Fixed bugs and handled day-to-day support requests in a small Agile team.
 
-Stack: ASP.NET MVC, VB.NET, SQL Server, JavaScript, jQuery.
+Stack: ASP.NET MVC, VB.NET, C#, SQL Server, JavaScript, jQuery.
 
 ## Projects
 
@@ -88,7 +88,7 @@ MSc final project. A web application that assesses an organisation's staff expos
 
 ## Stack
 
-- Languages: JavaScript, TypeScript, VB.NET, SQL (T-SQL), HTML, CSS; C# (learning)
+- Languages: JavaScript, TypeScript, VB.NET, C#, SQL (T-SQL), HTML, CSS
 - Front end: React, Next.js, Tailwind CSS, jQuery, Bootstrap, Razor
 - Back end: ASP.NET MVC, .NET Framework, Next.js route handlers, REST APIs; ASP.NET Core (learning)
 - Data: SQL Server, stored procedures, query optimisation, Redis (Upstash)

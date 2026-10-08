@@ -21,6 +21,7 @@ export const roles: readonly Role[] = [
     stack: [
       "ASP.NET MVC",
       "VB.NET",
+      "C#",
       ".NET Framework",
       "SQL Server",
       "T-SQL",
@@ -44,7 +45,7 @@ export const roles: readonly Role[] = [
       "Wrote SQL queries, views and stored procedures for data entry, validation and reporting.",
       "Fixed bugs and handled day-to-day support requests in a small Agile team.",
     ],
-    stack: ["ASP.NET MVC", "VB.NET", "SQL Server", "JavaScript", "jQuery"],
+    stack: ["ASP.NET MVC", "VB.NET", "C#", "SQL Server", "JavaScript", "jQuery"],
   },
 ];
 
