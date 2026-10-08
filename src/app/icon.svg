@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Favicon: a prompt chevron and the amber block cursor on the page background.
+       Follows the system colour scheme (PLAN.md §8.1 tokens). -->
+  <style>
+    .bg { fill: #0d1117; }
+    .chevron { stroke: #56d4b8; }
+    .cursor { fill: #f2b544; }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #edf0f3; }
+      .chevron { stroke: #0b6b5c; }
+      .cursor { fill: #b87a00; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="7" />
+  <path class="chevron" d="M8 10.5l5.5 5.5L8 21.5" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <rect class="cursor" x="17.5" y="9" width="6.5" height="14" rx="1" />
+</svg>

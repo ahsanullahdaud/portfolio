@@ -75,6 +75,21 @@ export const ui = {
   a11y: {
     opensInNewTab: "(opens in new tab)",
   },
+  /** Document titles: "<page> — <name>"; the root is "<name> — <title>". */
+  meta: {
+    separator: " — ",
+    pages: {
+      work: "Work",
+      stack: "Stack",
+      contact: "Contact",
+      notFound: "Not found",
+    },
+  },
+  notFound: {
+    command: "cd",
+    message: "cd: no such file or directory",
+    back: "back to ~",
+  },
   labels: {
     photo: "photo.jpg",
     status: "status",

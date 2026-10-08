@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { AboutCard } from "@/components/cards/work/AboutCard";
 import { CountCard } from "@/components/cards/work/CountCard";
 import { CreatorMatchCard } from "@/components/cards/work/CreatorMatchCard";
@@ -10,6 +11,11 @@ import { roles } from "@/content/experience";
 import { cyberSecurity, priceComparison } from "@/content/projects";
 import { screen } from "@/content/screens";
 import { ui } from "@/content/ui";
+
+export const metadata: Metadata = {
+  title: ui.meta.pages.work,
+  alternates: { canonical: screen.work.route },
+};
 
 // Work (PLAN.md §5.2, design/MOCKUP_SPEC.md §5): 12 columns x 3 rows that fill the
 // window, then row 4 (about and the two roles) below the fold, reached by scrolling the

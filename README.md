@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ahsan Ullah Daud — portfolio
 
-## Getting Started
+Personal developer portfolio: a terminal / code-editor themed card grid with four screens (Index, Work, Stack, Contact), keyboard navigation, a command palette and light / dark themes.
 
-First, run the development server:
+Live: https://ahsanullahdaud.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- Next.js 16 (App Router, fully static output), React 19, TypeScript
+- Tailwind CSS 4 with design tokens as CSS variables (`src/app/globals.css`)
+- `next-themes` for the persisted theme (system default)
+- Fonts through `next/font`: IBM Plex Mono, IBM Plex Sans, Space Grotesk
+- No backend, database, analytics, env vars or third-party scripts
+
+## Scripts
+
+```
+npm run dev        # dev server at http://localhost:3000
+npm run lint       # eslint
+npm run build      # production build (all routes static)
+npx tsc --noEmit   # type check; run after a build
+npm run start      # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+CONTENT.md             single source of truth for all text
+PLAN.md, CLAUDE.md     plan, conventions and commands
+design/MOCKUP_SPEC.md  the approved mockups, described
+src/app/               routes, layout, template, 404, favicon, robots, sitemap
+src/components/shell/  path bar, dock, screen grid, prompt line, palette, keyboard nav
+src/components/cards/  card primitives and one component per card
+src/components/ui/     Button, ExternalLink
+src/content/           typed content transcribed from CONTENT.md, UI strings, palette items
+src/lib/               cn(), keyboard map
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Keyboard
 
-## Learn More
+| Key | Action |
+|---|---|
+| `1` `2` `3` `4` | Index / Work / Stack / Contact |
+| `←` `→` | previous / next screen |
+| `Ctrl K`, `⌘ K`, `/` | command palette |
+| `Esc` | close the palette |
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every push to `main` deploys to Vercel.
