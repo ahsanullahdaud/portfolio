@@ -20,7 +20,7 @@ const titleClass = {
 /** Projects 02 and 03: label, title, description, stack chips, plus a muted "private client" chip when the client is private. */
 export function ProjectCard({ project, label, titleSize, className }: ProjectCardProps) {
   return (
-    <Card id={project.id} as="article" className={className}>
+    <Card contain={false} id={project.id} as="article" className={className}>
       <CardLabel>{label}</CardLabel>
       <div className="flex flex-col gap-2.5">
         <h2 className={`font-display ${titleClass[titleSize]} font-bold text-fg`}>{project.name}</h2>

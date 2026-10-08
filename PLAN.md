@@ -50,7 +50,7 @@ Content source: `CONTENT.md`. Design source: `design/MOCKUP_SPEC.md`.
 ```
 
 - Page padding 20px. 12px between path bar, grid and dock. Grid gap 12px.
-- Grid height is `calc(100dvh - 152px)` (20 + 44 + 12 above, 12 + 44 + 20 below). Rows are `repeat(n, 1fr)` with n = 3 on Index and Contact and n = 2 on Stack: equal whenever the content allows, and a row whose content needs more height takes it from the others instead of overflowing (so at 1366×768 Index rows measure about 182 / 243 / 166 with nothing clipped). Work uses `repeat(3, minmax(var(--row-3), auto))` so rows 1 to 3 fill the window and the rows after them are reached by scrolling the grid, while the bars stay fixed. The scroll container is `<main>` with `overflow-y: auto` and `overscroll-behavior: contain`.
+- Grid height is `calc(100dvh - 152px)` (20 + 44 + 12 above, 12 + 44 + 20 below). Rows are strictly equal, `repeat(n, minmax(0, 1fr))`, with n = 3 on Index and Contact and n = 2 on Stack. Cards on these screens have `min-height: 0` and are CSS size containers (`container: card / size` at ≥1024px), so a card never grows its row; instead it adapts to the height its row gives it through the container-query variants in `globals.css`: `short` (a card under 213px, or under 237px when narrower than 726px) and `short-list` (a Stack card under 301px). Work uses `repeat(3, minmax(var(--row-3), auto))` and its cards are not contained, so rows 1 to 3 fill the window and the rows after them are reached by scrolling the grid, while the bars stay fixed. The scroll container is `<main>` with `overflow-y: auto` and `overscroll-behavior: contain`. Verified by the height sweep in step 13.
 - Path bar: 44px surface card, 10px radius. Left: a 10px amber dot (`--accent-line`), `~/ahsan/portfolio` in muted mono, then the current screen name in fg. Right: the theme toggle and, from step 11 when the palette exists, `press [Ctrl K] for commands` (hidden below 640px, where a palette icon button with an `aria-label` replaces it).
 - Dock: centred row of four items, 44px high, 8px radius, number then label (`1 index`, `2 work`, `3 stack`, `4 contact`). Active item: `primary` fill with bold `primary-fg` text (amber with dark text in dark mode, `#10161D` with white text in light mode) and `aria-current="page"`. Others: surface with a line border, number in muted. A `← →` hint sits right of the dock at ≥640px.
 - Cards: surface background, 1px line border, 10px radius, 20px padding (32px on the Index hero and Contact hero). Most cards are a flex column with the label row at the top and the main content pushed to the bottom (`justify-content: space-between`). Featured cards (Index featured, Work Creator Match, Contact email) have a 1px amber border (`--accent-line`) instead of line.
@@ -93,7 +93,7 @@ Common rules:
 | Featured | 7–12 | 2 | Amber border. Label row: `featured project` left, `live` in `ok` right. "Creator Match" at 40px. The One line sentence ("Turns a brand brief into ten scored YouTube creators, each with reasons, concerns and a draft outreach message, in about 12 seconds.") in fg-2. Bottom row: chips Next.js 16, TypeScript, Gemini API (structured outputs), Vercel on the left; `live demo` (primary) → live URL and `code` (secondary) → repo URL on the right. |
 | Stat × 4 | 1–3, 4–6, 7–9, 10–12 | 3 | Label top, 56px number, one muted caption line. `experience` / `3 yrs` / "commercial experience". `support` / `10+` / "out-of-hours production incidents resolved · 4-hour support response target". `creator match` / `~8 h` / "from plan to live product on Creator Match". `tests` / `158` / "automated tests on Creator Match". |
 
-Fit, verified with screenshots in both themes at 1920×880, 1920×950, 1536×730, 1440×900, 1366×768 and 390×844: Index fills the window with no scrollbar at every laptop size. Display type scales with viewport height as well as width (section 8.3), so short windows get smaller type rather than overflow. Where the featured card still needs more than a third of the height, its row grows and the other two shrink; nothing is clipped. The featured card's bottom row wraps when chips and buttons do not fit on one line: chips stay left on the first line and the buttons sit right-aligned on the next. Card internals use 12px gaps (10px inside the featured card). The name never drops below 46px.
+Fit (step 13 sweep): Index fills the window with no scrollbar and nothing clipped at every width in {1920, 1536, 1440, 1366} and every height from 700 to 1000. Display type scales with viewport height as well as width (section 8.3). The rows are strictly equal; when the featured card's row is short (the `short` variant: under 213px, or under 237px while the card is narrower than 726px) the card drops its four chips and places the two buttons beside the title and description, so it fits a third of a 700px-tall window; the status and stat cards tighten their gaps. On taller rows the featured card's bottom row holds chips left and buttons right, wrapping the buttons onto a second line when they do not fit. Card internals use 12px gaps (10px inside the featured card). The name never drops below 46px.
 
 ### 5.2 Work — `/work` — 12 columns × 3 equal rows, then rows below the fold
 
@@ -130,8 +130,8 @@ The AI-first card is dropped: the two rows are full, and both of its sentences a
 | LinkedIn | 6–8 | 2 | Whole card is the link. Label `01 / profile`. "LinkedIn" at 32px. Handle `ahsan-ullah-daud-ba7647200` in muted mono. |
 | GitHub | 9–10 | 2 | Whole card is the link. Label `02 / code`. "GitHub" at 32px. `ahsanullahdaud` in muted mono. |
 | CV | 11–12 | 2 | Whole card is the link to `/cv.pdf` with `download`. Label `03 / download`. "CV" at 32px. `cv.pdf` in muted mono. |
-| Looking for | 6–9 | 3 | Terminal block headed `$ ahsan --looking-for`, then aligned key/value rows with keys in `ok` (keys are chrome, values verbatim fragments): `role` → "full-stack and AI engineering roles in the UK"; `working` → "Open to hybrid working."; `based` → "Stoke-on-Trent, UK"; `visa` → "Eligible to work in the UK without sponsorship." |
-| This site | 10–12 | 3 | Label `this site`. Three lines (chrome, true of this site): "built with Claude Code" / "Next.js, TypeScript, Tailwind CSS" / "hosted on Vercel". Copyright line "© 2026 Ahsan Ullah Daud". |
+| Looking for | 6–10 | 3 | Terminal block headed `$ ahsan --looking-for`, then aligned key/value rows with keys in `ok` (keys are chrome, values verbatim fragments): `role` → "full-stack and AI engineering roles in the UK"; `working` → "Open to hybrid working."; `based` → "Stoke-on-Trent, UK"; `visa` → "Eligible to work in the UK without sponsorship." Five columns (the spec drew four) so each row stays on one line at 1366px; tighter paddings and 12px text in a short row. |
+| This site | 11–12 | 3 | Label `this site`. Three lines (chrome, true of this site): "built with Claude Code" / "Next.js, TypeScript, Tailwind CSS" / "hosted on Vercel". Copyright line "© 2026 Ahsan Ullah Daud". Two columns (the spec drew three). |
 
 No contact form. The three link cards are anchors themselves and show `↗` (or `↓` for the CV) at the right of the label row as the new-tab or download cue. The looking-for block lists only facts CONTENT.md has: role, working, based, visa. There is no start-date or notice-period row. Fit, verified with screenshots in both themes (step 10): the three rows fill the window at 1920×880, 1440×900 and 1366×768 with no scrollbar; at 390px the column stacks hero, email, LinkedIn, GitHub, CV, looking-for, this site.
 
@@ -373,12 +373,28 @@ Done when every action works, the copy button announces `copied`, the CV downloa
 Done when `Ctrl K`, `⌘ K` and `/` open it, filtering and arrow keys work, every item navigates or opens correctly, focus is trapped and restored, and `Esc` closes it.
 
 ### Step 12 — Metadata and polish
-`metadata` in `layout.tsx` (title "Ahsan Ullah Daud — Full-Stack Web Developer", description = Tagline, `metadataBase` = https://ahsanullahdaud.vercel.app, Open Graph title/description), `icon.svg`, `not-found.tsx`, `robots.ts`, `sitemap.ts`, README with the stack and scripts. Commit `feat: metadata, favicon, 404 and readme`.
+`metadata` in `layout.tsx` (title "Ahsan Ullah Daud — Full-Stack Web Developer", description = Tagline, `metadataBase` = https://ahsanullahdaud.vercel.app, Open Graph title/description), `icon.svg`, `not-found.tsx`, `robots.ts`, `sitemap.ts`, README with the stack and scripts. Commit `feat: metadata, favicon, 404 and readme`. Done 2026-10-08. Step 13 added the Open Graph image: `src/app/opengraph-image.tsx` renders a 1200×630 PNG at build time (dark background, prompt line, the name in Space Grotesk, the title, the site host and the short status) from the TTF files in `src/assets/og/`; `twitter:card` is `summary_large_image`.
 
 ### Step 13 — Accessibility and performance pass
 Run Lighthouse and axe DevTools in Chrome on the production URL in both themes; re-confirm the section 8.2 ratios on the rendered site; keyboard-only walk of every screen and the palette; reduced-motion check; 200% zoom and 320px width; inspect the `next build` route table (all routes static) and first-load JS. Fix findings. Commit `a11y: audit fixes` / `perf: …` as needed.
 
-Parked from step 7: Index still overflows by about 15px at roughly 1920×880 (featured row grows past its third); fix by making rows strictly equal and verify with a height sweep from 700 to 1000.
+Done 2026-10-08. Results (scripts live in the gitignored `.shots/` folder and run against `npm run start` with the Playwright package from the npx cache):
+
+- **Overflow fixed by construction** (the note parked from step 7 is resolved): rows `minmax(0, 1fr)`, cards `min-height: 0` and size containers, `short` / `short-list` container-query variants (section 3). `sweep.js`: widths 1920, 1536, 1440, 1366 × heights 700 to 1000 in steps of 10 × Index, Stack, Contact = 372 sizes; every one has `scrollHeight <= clientHeight` on `<main>` and no card whose content exceeds its box. 0 failures.
+- **Open Graph image**: `/opengraph-image`, 1200×630 PNG, static at build; `og:image`, `og:image:alt` and `twitter:image` point at it; `twitter:card` is `summary_large_image`.
+- **Contrast** (`a11y.js`, every visible text element on all four routes, both themes, plus the open palette and the expanded role cards): 8 to 10 colour pairs per screen, minimum 5.59:1 in light (muted on the page background) and 6.72:1 in dark (muted on surface). Nothing below 4.5:1.
+- **Reduced motion**: the cursor blink and the screen-enter animation compute to `none`, `--dur-1` and `--dur-2` to 0, transitions to 0.01ms. The `:root` override had to move out of `@layer base`, because the unlayered token block was beating it.
+- **Keyboard walk** on Index: palette button, theme toggle, the two hero buttons, the two featured buttons, the four dock items, all with the 2px focus ring; the palette's own trap was verified in step 11.
+- **Lighthouse** (local production build, Chrome headless; all four categories):
+
+  | Route | Desktop P / A / BP / SEO | Mobile P / A / BP / SEO |
+  |---|---|---|
+  | `/` | 100 / 100 / 100 / 100 | 95 / 100 / 100 / 100 |
+  | `/work` | 100 / 100 / 100 / 100 | 95 / 100 / 100 / 100 |
+  | `/stack` | 100 / 100 / 100 / 100 | 96 / 100 / 100 / 100 |
+  | `/contact` | 100 / 100 / 100 / 100 | 97 / 100 / 100 / 100 |
+
+  Mobile performance sits in the mid-90s because of the simulated slow 4G throttling on the font and image bytes; no third-party requests exist.
 
 ### Step 14 — Final deploy and handover
 Push, confirm the production deployment in both themes on a phone, confirm the repo is public and the README is current. Optional: attach a custom domain in Vercel and update `metadataBase`.
@@ -394,6 +410,8 @@ Decisions taken where the spec and the content rules meet. Each is a one-line ch
 - **Looking-for rows: four, not three.** `role`, `working`, `based`, `visa`, each a verbatim fragment. The spec's "where" row would have needed a new sentence.
 - **AI-first card dropped from Stack.** The two-row grid is full and both of its sentences already appear on Work.
 - **Private-client note not shown.** Project 02's "Client is private: no name, link or screenshots." would push the card past its row at 1366×768; the muted `private client` chip states the same fact.
+- **Contact row 3 spans.** Looking-for takes columns 6–10 and this-site 11–12 (the spec drew 6–9 and 10–12) so the looking-for rows stay on one line at 1366px and the row fits a 700px-tall window.
+- **Featured chips in short rows.** When the Index featured card's row is short, its four stack chips are not shown; the full stack is on Work. Nothing from CONTENT.md is lost.
 - **Stat captions.** The 4-hour target is folded into the `10+` caption as the spec asks, joined with a `·`. `3 yrs` and `~8 h` are display abbreviations; captions stay verbatim.
 - **"2026 CV"** is chrome in `ui.ts`; update the year when the CV changes.
 - **Light-mode amber borders, dot and cursor.** Resolved: `--accent-line` is `#B87A00` in light mode and `#F2B544` in dark mode (section 8.1).

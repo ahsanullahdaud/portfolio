@@ -10,6 +10,8 @@ import { Chip } from "../Chip";
  * 40px, the one-line description, then chips on the left and the two buttons on the
  * right. The bottom row wraps when the card is too narrow for both, with the buttons
  * staying right-aligned; on phones the buttons are a full-width pair.
+ * In a short row (`short`, see globals.css) the chips are dropped and the buttons sit
+ * beside the text, so the card fits a third of a 700px-tall window.
  */
 export function FeaturedCard({ className }: { className?: string }) {
   const project = creatorMatch;
@@ -17,13 +19,15 @@ export function FeaturedCard({ className }: { className?: string }) {
   return (
     <Card as="section" variant="featured" className={className}>
       <CardLabel right={<span className="text-ok">{ui.labels.live}</span>}>{ui.labels.featured}</CardLabel>
-      <div className="flex flex-col gap-2.5">
-        <h2 className="font-display text-title-md font-bold text-fg">
-          {project.name}
-        </h2>
-        <p className="font-sans text-[15px] leading-normal text-fg-2">{project.oneLine}</p>
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5">
-          <ul className="flex flex-wrap gap-1.5">
+      <div className="flex flex-col gap-2.5 short:grid short:grid-cols-[minmax(0,1fr)_auto] short:items-end short:gap-x-4">
+        <div className="flex flex-col gap-2.5 short:gap-1.5">
+          <h2 className="font-display text-title-md font-bold text-fg">{project.name}</h2>
+          <p className="font-sans text-[15px] leading-normal text-fg-2 short:text-sm short:leading-snug">
+            {project.oneLine}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 short:contents">
+          <ul className="flex flex-wrap gap-1.5 short:hidden">
             {project.featuredChips?.map((item) => (
               <li key={item}>
                 <Chip>{item}</Chip>

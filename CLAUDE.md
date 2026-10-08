@@ -40,12 +40,14 @@ PLAN.md               plan; update it when a decision changes
 CLAUDE.md             this file
 public/photo.jpg      433×577 portrait, used by next/image
 public/cv.pdf         two-page CV, served as a download
-src/app/              routes: / (Index), /work, /stack, /contact, not-found, layout, template, globals.css, icon.svg, robots.ts, sitemap.ts
+src/app/              routes: / (Index), /work, /stack, /contact, not-found, layout, template, globals.css, icon.svg, opengraph-image.tsx, robots.ts, sitemap.ts
 src/components/shell/ PathBar, PaletteButton, ScreenName, Dock, DockItem, useScreen, ThemeToggle, KeyboardNav, CommandPalette, Screen, PromptLine, Cursor
 src/components/cards/ Card, CardLabel, Chip, StatCard and one component per card type
 src/components/ui/    Button, ExternalLink
 src/content/          typed content modules transcribed from CONTENT.md, plus screens.ts, ui.ts, palette.ts
-src/lib/              cn.ts, keys.ts
+src/lib/              cn.ts, keys.ts, tokens.ts (hex mirror of the dark tokens for the OG image)
+src/assets/og/        Space Grotesk Bold and IBM Plex Mono Regular TTFs for the build-time OG image
+.shots/               gitignored: screenshots and the local verification scripts (sweep.js, a11y.js)
 ```
 
 ## Conventions
@@ -87,7 +89,7 @@ Keep this table, PLAN.md §4 and `src/lib/keys.ts` in sync.
 ## Definition of done for every step
 
 - `npm run lint`, `npm run build`, then `npx tsc --noEmit` pass with no warnings introduced (the type check needs the types a build generates).
-- Checked in Chrome at 1366×768 and 390×844, light and dark, with reduced motion once.
+- Checked in Chrome at 1366×768 and 390×844, light and dark, with reduced motion once. For Index, Stack or Contact layout changes, also run the height sweep (`node .shots/sweep.js <playwright-dir>` against `npm run start`): no scroll and no clipped card at widths 1920/1536/1440/1366 and heights 700 to 1000.
 - Keyboard-only walk of whatever changed; focus is visible at every stop.
 - No new runtime requests to third parties (check the Network tab).
 - Committed and pushed; the Vercel deployment is green.

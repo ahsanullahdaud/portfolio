@@ -3,6 +3,24 @@
 /* Dark mode is class-based: next-themes puts .dark on <html>. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Card container queries (PLAN.md §3). At >= 1024px every window-filling card is a
+   size container named `card`, so a card styles itself for the height its row gives it
+   instead of growing the row. Rows are strictly equal (minmax(0, 1fr)).
+   short:      a card too short for its full layout: under 213px, or under 237px when it
+               is also narrower than 726px (where the featured card's chips and buttons
+               would wrap onto two lines).
+   short-list: a Stack card too short for seven full-height list rows. */
+@custom-variant short {
+  @container card ((max-height: 236px) and (max-width: 725px)) or (max-height: 212px) {
+    @slot;
+  }
+}
+@custom-variant short-list {
+  @container card (max-height: 300px) {
+    @slot;
+  }
+}
+
 /* Colour and motion tokens (PLAN.md §8). Light on :root, dark on .dark. */
 :root {
   color-scheme: light;
@@ -146,11 +164,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    :root {
-      --dur-1: 0ms;
-      --dur-2: 0ms;
-    }
-
     *,
     ::before,
     ::after {
@@ -159,6 +172,15 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* Unlayered on purpose: the token block above is unlayered too, and an unlayered
+   declaration would beat one inside @layer base. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
   }
 }
 

@@ -9,7 +9,7 @@ export function CountCard({ className }: { className?: string }) {
   const count = String(projects.length).padStart(2, "0");
 
   return (
-    <Card as="section" className={className}>
+    <Card contain={false} as="section" className={className}>
       <PromptLine as="h1" command={screen.work.command} cursor />
       <div>
         <p className="font-display text-title-xl font-bold text-fg">{count}</p>

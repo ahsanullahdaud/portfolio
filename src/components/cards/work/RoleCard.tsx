@@ -18,7 +18,7 @@ export function RoleCard({ role, className }: RoleCardProps) {
   const [summary, ...rest] = role.bullets;
 
   return (
-    <Card id={role.id} as="article" className={className}>
+    <Card contain={false} id={role.id} as="article" className={className}>
       <CardLabel>{`${ui.labels.experience} · ${role.dates}`}</CardLabel>
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-col gap-0.5">

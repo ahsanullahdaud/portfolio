@@ -8,7 +8,7 @@ export function DayJobCard({ className }: { className?: string }) {
   const role = currentRole;
 
   return (
-    <Card as="section" className={className}>
+    <Card contain={false} as="section" className={className}>
       <CardLabel
         right={
           <a

@@ -20,16 +20,16 @@ export function StackSummaryCard({ className }: { className?: string }) {
   return (
     <Card as="section" className={className}>
       <PromptLine as="h1" command={screen.stack.command} cursor />
-      <div className="flex flex-col gap-3">
-        <div>
+      <div className="flex flex-col gap-3 short-list:gap-2">
+        <div className="short-list:flex short-list:items-baseline short-list:gap-2">
           <p className="font-display text-title-xl font-bold text-fg">{skillGroups.length}</p>
-          <p className="mt-1.5 font-mono text-xs text-muted">{ui.captions.categories}</p>
+          <p className="mt-1.5 font-mono text-xs text-muted short-list:mt-0">{ui.captions.categories}</p>
         </div>
-        <dl className="flex flex-col gap-2 font-mono text-xs leading-snug">
+        <dl className="flex flex-col gap-2 font-mono text-xs leading-snug short-list:gap-1 short-list:text-[11px]">
           {lines.map((line) => (
             <div key={line.label}>
-              <dt className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted">{line.label}</dt>
-              <dd className="mt-0.5 text-fg-2">{line.value}</dd>
+              <dt className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted short-list:text-[10px]">{line.label}</dt>
+              <dd className="mt-0.5 text-fg-2 short-list:mt-0">{line.value}</dd>
             </div>
           ))}
         </dl>

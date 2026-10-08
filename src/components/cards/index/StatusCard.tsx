@@ -8,12 +8,12 @@ export function StatusCard({ className }: { className?: string }) {
   return (
     <Card as="section" className={className}>
       <CardLabel>{ui.labels.status}</CardLabel>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 short:gap-1">
         <h2 className="flex items-center gap-2.5 font-display text-status font-bold text-fg">
           <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full bg-ok" />
           {identity.statusShort}
         </h2>
-        <ul className="flex flex-col gap-0.5 font-mono text-xs leading-snug text-muted">
+        <ul className="flex flex-col gap-0.5 font-mono text-xs leading-snug text-muted short:gap-0 short:text-[11px]">
           <li>{identity.location}</li>
           {identity.statusDetails.map((line) => (
             <li key={line}>{line}</li>

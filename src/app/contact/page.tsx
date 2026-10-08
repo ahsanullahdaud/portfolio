@@ -52,8 +52,9 @@ export default function Contact() {
         kind="download"
         className="sm:col-span-2 lg:col-span-2 lg:col-start-11 lg:row-start-2"
       />
-      <LookingForCard className="sm:col-span-3 lg:col-span-4 lg:col-start-6 lg:row-start-3" />
-      <SiteCard className="sm:col-span-3 lg:col-span-3 lg:col-start-10 lg:row-start-3" />
+      {/* Looking-for takes five columns so its rows stay on one line at 1366px; this-site takes two. */}
+      <LookingForCard className="sm:col-span-3 lg:col-span-5 lg:col-start-6 lg:row-start-3" />
+      <SiteCard className="sm:col-span-3 lg:col-span-2 lg:col-start-11 lg:row-start-3" />
     </Screen>
   );
 }

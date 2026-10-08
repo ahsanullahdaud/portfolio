@@ -19,7 +19,7 @@ export function CreatorMatchCard({ className }: { className?: string }) {
   const nameLines = project.name.split(" ");
 
   return (
-    <Card id={project.id} as="article" variant="featured" className={className}>
+    <Card contain={false} id={project.id} as="article" variant="featured" className={className}>
       <div className="grid flex-1 gap-4 lg:grid-cols-[3fr_2fr] lg:gap-6">
         <div className="flex flex-col justify-between gap-4">
           <div className="flex flex-col gap-3">

@@ -17,7 +17,7 @@ export function StatCard({ label, stat, className }: StatCardProps) {
         <p className="font-display text-stat font-bold text-fg">
           {stat.value}
         </p>
-        <p className="mt-1.5 font-mono text-xs leading-snug text-muted">{stat.caption}</p>
+        <p className="mt-1.5 font-mono text-xs leading-snug text-muted short:mt-1 short:text-[11px]">{stat.caption}</p>
       </div>
     </Card>
   );

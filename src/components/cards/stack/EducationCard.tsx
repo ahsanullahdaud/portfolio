@@ -8,12 +8,12 @@ export function EducationCard({ className }: { className?: string }) {
   return (
     <Card as="section" className={className}>
       <CardLabel>{ui.labels.education}</CardLabel>
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-4 short-list:gap-2">
         {education.map((entry) => (
-          <li key={entry.degree} className="flex flex-col gap-0.5">
-            <h2 className="font-display text-title-24 font-bold text-fg">{entry.degree}</h2>
-            <p className="font-sans text-sm text-fg-2">{entry.institution}</p>
-            <p className="font-mono text-xs text-muted">{entry.dates}</p>
+          <li key={entry.degree} className="flex flex-col gap-0.5 short-list:gap-0">
+            <h2 className="font-display text-title-24 font-bold text-fg short-list:text-[22px]">{entry.degree}</h2>
+            <p className="font-sans text-sm text-fg-2 short-list:text-[13px]">{entry.institution}</p>
+            <p className="font-mono text-xs text-muted short-list:text-[11px]">{entry.dates}</p>
           </li>
         ))}
       </ul>
