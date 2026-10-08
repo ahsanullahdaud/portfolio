@@ -27,6 +27,7 @@ npm run start      # serve the production build
 ```
 CONTENT.md             single source of truth for all text
 PLAN.md, CLAUDE.md     plan, conventions and commands
+BUILD_LOG.md           how it was built: the 14 steps, decisions, verification results
 design/MOCKUP_SPEC.md  the approved mockups, described
 src/app/               routes, layout, template, 404, favicon, robots, sitemap
 src/components/shell/  path bar, dock, screen grid, prompt line, palette, keyboard nav

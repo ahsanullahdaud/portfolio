@@ -117,7 +117,7 @@ Rows 1 to 3 fill the window; row 4 is `auto` height below it. Role cards use nat
 |---|---|---|---|
 | Summary (`<h1>` = prompt) | 1–3 | 1 | Prompt line `~/ahsan $ cat stack.json` with cursor. "6" at 64px. Caption `categories` in muted. Two labelled lines in 12px muted mono: `commercial` → the 2025 role's Stack line ("ASP.NET MVC, VB.NET, .NET Framework, SQL Server, T-SQL, JavaScript, jQuery, Bootstrap, Razor, Git, JIRA"); `projects` → the Creator Match Stack line. |
 | Education | 1–3 | 2 | Label `education`. "MSc Computer Science" at 24px, then "University of Hertfordshire, UK" and "September 2022 to October 2024" in muted. "BS (Hons) Computer Science" at 24px, then "Capital University of Science & Technology, Pakistan" and "September 2015 to January 2020" in muted. |
-| Skill group × 6 | 4–6, 7–9, 10–12 | 1 and 2 | Label row: group name left (`languages`, `front end`, `back end`, `data`, `ai`, `tools`), item count right in amber text (`07`, `06`, `05`, `04`, `04`, `06`, derived). Items as list rows separated by line-soft dividers, 14px mono, in the order written. "C#" and "ASP.NET Core" show a muted `learning` note on the right. Lists, not chips. |
+| Skill group × 6 | 4–6, 7–9, 10–12 | 1 and 2 | Label row: group name left (`languages`, `front end`, `back end`, `data`, `ai`, `tools`), item count right in amber text (`07`, `06`, `05`, `04`, `04`, `06`, derived). Items as list rows separated by line-soft dividers, 14px mono, in the order written. "ASP.NET Core" shows a muted `learning` note on the right (C# is commercial since the 2026-10-08 content correction). Lists, not chips. |
 
 The AI-first card is dropped: the two rows are full, and both of its sentences already appear on Work (the Creator Match card and the 2025 role bullets). See §11. Fit at 1366×768: rows ≈ 302px; the longest list (7 rows ≈ 210px + label + padding ≈ 264px) fits.
 
@@ -398,6 +398,8 @@ Done 2026-10-08. Results (scripts live in the gitignored `.shots/` folder and ru
 
 ### Step 14 — Final deploy and handover
 Push, confirm the production deployment in both themes on a phone, confirm the repo is public and the README is current. Optional: attach a custom domain in Vercel and update `metadataBase`.
+
+Done 2026-10-08: production deployment green, all four routes and the 404 checked in both themes on production, repo public, README current, working tree clean. `BUILD_LOG.md` records the 14 steps with dates, rough durations, decisions and verification results. No custom domain; `metadataBase` stays the vercel.app address.
 
 ## 11. Assumptions and open questions
 
