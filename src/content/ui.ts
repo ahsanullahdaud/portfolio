@@ -45,6 +45,8 @@ export const ui = {
   glyphs: {
     newTab: "↗",
     download: "↓",
+    /** Internal link cue (the "currently" card goes to its role on Work). */
+    go: "→",
     /** Palette button on phones, where the text hint is hidden. */
     palette: ">_",
   },
@@ -74,6 +76,12 @@ export const ui = {
   },
   a11y: {
     opensInNewTab: "(opens in new tab)",
+    /** Alt text prefix for the photo: "Portrait of <name>". */
+    portraitOf: "Portrait of",
+  },
+  /** Static assets that are not named in CONTENT.md. */
+  assets: {
+    photoCutout: "/photo-cutout.png",
   },
   /** Document titles: "<page> — <name>"; the root is "<name> — <title>". */
   meta: {
@@ -93,6 +101,7 @@ export const ui = {
   labels: {
     photo: "photo.jpg",
     status: "status",
+    currently: "currently",
     featured: "featured project",
     live: "live",
     stats: {

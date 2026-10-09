@@ -31,13 +31,13 @@ export function LinkCard({ label, title, handle, href, kind, className }: LinkCa
 
   if (kind === "external") {
     return (
-      <ExternalLink href={href} arrow={false} className={classes}>
+      <ExternalLink href={href} arrow={false} className={classes} data-card="">
         {inner}
       </ExternalLink>
     );
   }
   return (
-    <a href={href} download className={classes}>
+    <a href={href} download data-card="" className={classes}>
       {inner}
     </a>
   );

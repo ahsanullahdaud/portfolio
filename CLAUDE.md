@@ -38,7 +38,8 @@ Environment: Windows 10, PowerShell. Node 26.9, npm 11 (no pnpm, do not add a pn
 CONTENT.md            source of truth for text (read-only during development)
 PLAN.md               plan; update it when a decision changes
 CLAUDE.md             this file
-public/photo.jpg      433×577 portrait, used by next/image
+public/photo.jpg      433×577 portrait (the original; referenced by CONTENT.md)
+public/photo-cutout.png  the same portrait with a transparent background, shown in the Index hero
 public/cv.pdf         two-page CV, served as a download
 src/app/              routes: / (Index), /work, /stack, /contact, not-found, layout, template, globals.css, icon.svg, opengraph-image.tsx, robots.ts, sitemap.ts
 src/components/shell/ PathBar, PaletteButton, ScreenName, Dock, DockItem, useScreen, ThemeToggle, KeyboardNav, CommandPalette, Screen, PromptLine, Cursor
@@ -62,7 +63,7 @@ src/assets/og/        Space Grotesk Bold and IBM Plex Mono Regular TTFs for the 
 
 **Fonts.** `next/font/google` only, loaded once in `layout.tsx`, exposed as `--font-mono` (IBM Plex Mono), `--font-display` (Space Grotesk 700) and `--font-sans` (IBM Plex Sans), all with `display: 'swap'`. Mono for labels, prompts, path bar, dock, chips, buttons and code. Display for the name, project titles, stat values and the Contact heading. Sans for paragraphs and bullets. Never load a font from a CDN.
 
-**Images.** `next/image` with explicit `width` and `height`. The photo is `priority` on Index only.
+**Images.** `next/image` with explicit `width` and `height`, or `fill` with explicit `sizes` inside a box the layout sizes (the hero photo frame). The photo is `priority` on Index only.
 
 **Links.** External links go through `<ExternalLink>`: `target="_blank"`, `rel="noopener noreferrer"`, a trailing `↗` with `aria-hidden`, and an sr-only "(opens in new tab)". The CV link uses the `download` attribute. The email link is `mailto:`.
 

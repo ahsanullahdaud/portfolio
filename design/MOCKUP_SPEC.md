@@ -56,9 +56,9 @@ The large display type is the main visual character of the design. Do not reduce
 
 | Card | Columns | Rows | Content |
 |---|---|---|---|
-| Hero | 1–6 | 1–2 | Prompt line at top. Name (76px) with cursor, title in amber mono 16px, tagline 20px. Bottom: primary button `./view-work` → /work, secondary `download cv.pdf`. |
-| Photo | 7–9 | 1 | Label `photo.jpg`. The photo fills the rest of the card (object-fit: cover, 8px radius). |
-| Status | 10–12 | 1 | Label `status`. `ok` dot + "Open to roles" in display 30px. Three muted lines: location, UK eligibility, hybrid. |
+| Hero | 1–6 | 1–2 | Prompt line at top. Left: name (76px) with cursor, title in amber mono 16px, tagline 20px. Right (revised 2026-10-09): the photo as a transparent cutout (`photo-cutout.png`, 433×577) in a frame with `surface-2` background, 1px `line` border, card radius and a 4:5 ratio, at most 230×290 so it stays sharp at 2x, shrinking with the window height. The photo is anchored to the bottom of the frame with the head fully visible. The frame's top edge aligns with the top of the name and its bottom edge with the bottom of the tagline; caption `photo.jpg` in muted mono below the frame, not overlaid. Bottom row: primary button `./view-work` → /work, secondary `download cv.pdf`. |
+| Status | 7–9 | 1 | Label `status`. `ok` dot + "Open to roles" in display 30px. Three muted lines: location, UK eligibility, hybrid. (Was 10–12; the separate Photo card is removed, revised 2026-10-09.) |
+| Currently | 10–12 | 1 | Label `currently`. The current role from CONTENT.md: title in display 24px, company, dates in muted mono. The whole card links to /work#ezsoft-2025. (Added 2026-10-09.) |
 | Featured | 7–12 | 2 | Amber 1px border. Label row: `featured project` left, `live` in `ok` right. "Creator Match" 40px. One-line description. Bottom row: four chips left; `live demo` (primary) and `code` (secondary) right. |
 | Stat × 4 | 3 cols each | 3 | Label top, 56px number, one muted line. Stats: `3 yrs`, `10+`, `~8 h`, `158`. |
 
@@ -100,4 +100,4 @@ The AI-first card from PLAN.md 5.3 can be added as a seventh card below if space
 
 ## 8. Phone (below 640px)
 
-One column, 12px page padding, 10px gaps. Order on Index: path bar, hero (photo as a 64px square at the top right of the hero card, name 46px), status, featured, then stats in a 2×2 grid. Buttons are full width in pairs, 48px high. The dock becomes a single rounded bar pinned to the bottom with four equal items, labels only.
+One column, 12px page padding, 10px gaps. Order on Index: path bar, hero (photo as a 64px square at the top right of the hero card, name 46px), status, currently, featured, then stats in a 2×2 grid. From 640px up to 1023px the hero shows the framed photo beside the name, as on laptops (revised 2026-10-09). Buttons are full width in pairs, 48px high. The dock becomes a single rounded bar pinned to the bottom with four equal items, labels only.

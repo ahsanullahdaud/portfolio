@@ -8,39 +8,64 @@ import { ui } from "@/content/ui";
 import { Card } from "../Card";
 
 /**
- * Index hero (design/MOCKUP_SPEC.md §4): prompt line, the name on two lines with the
- * cursor, title in amber mono, tagline, and two buttons at the bottom. On phones the
- * photo sits as a 64px square at the top right, because the Photo card is not rendered.
+ * Index hero. Prompt line; the name on two lines with the cursor, the title and the
+ * tagline; and from 640px a framed photo beside them (surface-2, 1px line, card radius,
+ * 4:5, width `--photo-w` = clamp(140px, 23.5vh, 230px), so at most 230×288). The frame
+ * and the text block share one grid row: the block stretches to the frame's height with
+ * the name at the top and the tagline at the bottom, so the frame's edges align with the
+ * top of the name and the bottom of the tagline. The caption sits in the row below the
+ * frame, and the two buttons on their own row. The name is capped by `--name-fit` so its
+ * first line never wraps in the narrower column. On phones the photo is a 64px square at
+ * the top right. The cutout is `object-contain` anchored to the bottom of its frame, so
+ * the head is never cut.
  */
 export function HeroCard({ className }: { className?: string }) {
   const words = identity.name.split(" ");
   const firstLine = words.slice(0, -1).join(" ");
   const lastLine = words[words.length - 1];
+  const alt = `${ui.a11y.portraitOf} ${identity.name}`;
 
   return (
     <Card as="section" variant="hero" className={className}>
-      <div className="flex flex-col gap-3 sm:gap-4">
-        <div className="flex items-start justify-between gap-4">
-          <PromptLine command={screen.index.command} />
-          <Image
-            src={identity.photoPath}
-            alt={identity.name}
-            width={64}
-            height={64}
-            className="size-16 shrink-0 rounded-[8px] object-cover object-[center_30%] sm:hidden"
-          />
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-5 gap-y-3 sm:grid-cols-[minmax(0,1fr)_var(--photo-w)] sm:gap-x-6 short-hero:gap-y-1.5">
+        <PromptLine command={screen.index.command} className="col-start-1 row-start-1 self-center" />
+
+        {/* Phones: 64px photo at the top right. */}
+        <figure className="relative col-start-2 row-start-1 size-16 justify-self-end overflow-hidden rounded-[8px] border border-line bg-surface-2 sm:hidden">
+          <Image src={ui.assets.photoCutout} alt={alt} fill sizes="64px" className="object-contain object-bottom" priority />
+        </figure>
+
+        <div className="col-span-2 row-start-2 flex flex-col justify-between gap-1.5 sm:col-span-1 sm:col-start-1">
+          <div className="flex flex-col gap-1.5">
+            <h1 className="font-display text-name font-bold text-fg sm:text-[min(var(--text-name),var(--name-fit))]">
+              {firstLine}
+              <br />
+              {lastLine}
+              <Cursor />
+            </h1>
+            <p className="font-mono text-base font-medium text-accent-text">{identity.title}</p>
+          </div>
+          <p className="max-w-prose font-display text-lead font-medium text-fg-2">{identity.tagline}</p>
         </div>
-        <h1 className="font-display text-name font-bold text-fg">
-          {firstLine}
-          <br />
-          {lastLine}
-          <Cursor />
-        </h1>
-        <p className="font-mono text-base font-medium text-accent-text">{identity.title}</p>
-        <p className="max-w-prose font-display text-lead font-medium text-fg-2">
-          {identity.tagline}
-        </p>
+
+        {/* From 640px: the framed photo in the name's row, its caption in the row below. */}
+        <figure className="hidden sm:contents">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-line bg-surface-2 sm:col-start-2 sm:row-start-2">
+            <Image
+              src={ui.assets.photoCutout}
+              alt={alt}
+              fill
+              sizes="(min-width: 640px) 230px, 64px"
+              className="object-contain object-bottom"
+              priority
+            />
+          </div>
+          <figcaption className="font-mono text-[11px] text-muted sm:col-start-2 sm:row-start-3 short-hero:text-[10px]">
+            {ui.labels.photo}
+          </figcaption>
+        </figure>
       </div>
+
       <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
         <Button variant="primary" href={screen.work.route}>
           {ui.buttons.viewWork}

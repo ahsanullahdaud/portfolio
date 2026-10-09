@@ -20,6 +20,12 @@
     @slot;
   }
 }
+/* short-hero: the two-row Index hero on a window under about 760px tall. */
+@custom-variant short-hero {
+  @container card (max-height: 400px) {
+    @slot;
+  }
+}
 
 /* Colour and motion tokens (PLAN.md §8). Light on :root, dark on .dark. */
 :root {
@@ -49,6 +55,15 @@
      page padding and gaps (152px). A three-row grid with rows below the fold
      uses this fixed row height so the first three rows fill the window. */
   --row-3: calc((100dvh - 152px - 24px) / 3);
+
+  /* Index hero photo frame width (4:5, so the height is 1.25x). Scales with the window
+     height like the display type, capped at 230px so the 433px cutout stays sharp at 2x. */
+  --photo-w: clamp(140px, 23.5vh, 230px);
+
+  /* Largest name size whose first line ("Ahsan Ullah", about 5.3em wide) still fits the
+     hero's text column: the card's content width (container units exclude padding) minus
+     the 24px gap and the photo frame. Used as min(var(--text-name), var(--name-fit)) from 640px. */
+  --name-fit: calc((100cqw - 24px - var(--photo-w)) / 5.45);
 }
 
 .dark {

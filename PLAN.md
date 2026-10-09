@@ -87,9 +87,9 @@ Common rules:
 
 | Card | Cols | Rows | Content (verbatim from CONTENT.md unless marked chrome) |
 |---|---|---|---|
-| Hero (`<h1>` = name) | 1–6 | 1–2 | 32px padding. Top: prompt line `~/ahsan $ whoami`. Name on two lines, "Ahsan Ullah" / "Daud", 76px, cursor after "Daud". Title "Full-Stack Web Developer" in 16px mono, amber text. Tagline at 20px, fg-2. Bottom: primary button `./view-work` → `/work`, secondary button `download cv.pdf` → `/cv.pdf` with `download`. |
-| Photo | 7–9 | 1 | Label `photo.jpg`. A surface-2 frame (8px radius) fills the rest of the card. On laptops the frame is wide and short, so a square as tall as the frame holds the photo cropped from the top (`object-position: top`): the whole head is always visible and the frame shows at the sides. On tablets the frame is 3:4, the photo's own ratio, and shows it in full. `next/image` with `fill`, `priority`, alt = the name. Not rendered on phones. |
-| Status | 10–12 | 1 | Label `status`. `ok` dot + "Open to roles" (the Status (short) line) at 30px display. Three muted lines: "Stoke-on-Trent, UK" / "Eligible to work in the UK without sponsorship." / "Open to hybrid working." |
+| Hero (`<h1>` = name) | 1–6 | 1–2 | 32px padding. Top: prompt line `~/ahsan $ whoami`. Left: name on two lines, "Ahsan Ullah" / "Daud", 76px, cursor after "Daud"; title "Full-Stack Web Developer" in 16px mono, amber text; tagline at 20px, fg-2. Right, from 640px: the photo in a frame (surface-2, 1px line, card radius, 4:5) whose width is `--photo-w` = clamp(140px, 23vh, 230px), so it is at most 230×288 and shrinks with the window height. The text block stretches to the frame's height with the name at the top and the tagline at the bottom, so the frame's top edge aligns with the top of the name and its bottom edge with the bottom of the tagline. Caption `photo.jpg` in 11px muted mono below the frame. The image is `public/photo-cutout.png` (transparent background, 433×577) via `next/image` with `fill`, explicit `sizes`, `priority`, `object-contain` anchored to the bottom of the frame so the head is never cut; alt "Portrait of Ahsan Ullah Daud". Bottom row: primary button `./view-work` → `/work`, secondary button `download cv.pdf` → `/cv.pdf` with `download`. |
+| Status | 7–9 | 1 | Label `status`. `ok` dot + "Open to roles" (the Status (short) line) at 30px display. Three muted lines: "Stoke-on-Trent, UK" / "Eligible to work in the UK without sponsorship." / "Open to hybrid working." |
+| Currently | 10–12 | 1 | The whole card is a link to `/work#ezsoft-2025`. Label row: `currently` left, `→` right (chrome). "Full Stack Engineer" at 24px, "EZ Consultants & ERP Solutions (EZsoft)" in fg-2, "March 2025 to present" in muted mono. |
 | Featured | 7–12 | 2 | Amber border. Label row: `featured project` left, `live` in `ok` right. "Creator Match" at 40px. The One line sentence ("Turns a brand brief into ten scored YouTube creators, each with reasons, concerns and a draft outreach message, in about 12 seconds.") in fg-2. Bottom row: chips Next.js 16, TypeScript, Gemini API (structured outputs), Vercel on the left; `live demo` (primary) → live URL and `code` (secondary) → repo URL on the right. |
 | Stat × 4 | 1–3, 4–6, 7–9, 10–12 | 3 | Label top, 56px number, one muted caption line. `experience` / `3 yrs` / "commercial experience". `support` / `10+` / "out-of-hours production incidents resolved · 4-hour support response target". `creator match` / `~8 h` / "from plan to live product on Creator Match". `tests` / `158` / "automated tests on Creator Match". |
 
@@ -142,7 +142,7 @@ One card, columns 1–6, row 1: prompt line `~/ahsan $ cd <path>`, then `cd: no 
 ### 5.6 Phone — below 640px
 
 - One column, page padding 12px, gaps 10px, card padding 20px (hero 24px). Rows are `auto`; the column scrolls inside the screen.
-- Index order: path bar, hero (the photo becomes a 64px square at the top right of the hero card and the Photo card is not rendered; name at 46px), status, featured, then the four stats in a 2×2 grid.
+- Index order: path bar, hero (the photo is a 64px square at the top right of the hero card, in the same surface-2 frame; name at 46px), status, currently, featured, then the four stats in a 2×2 grid. From 640px the hero shows the framed photo beside the name block.
 - Work order: count, Creator Match (single column, terminal block below the buttons), project 02, project 03, day job, CV, about, role 2025, role 2021.
 - Stack order: summary, the six groups, education. Contact order: hero ("Let's talk." at 60px), email, LinkedIn, GitHub, CV, looking for, this site.
 - Buttons are full width in pairs, 48px high.
@@ -190,7 +190,7 @@ src/components/cards/
   Card.tsx                         variants: default | hero (32px padding) | featured (amber border); optional id
   CardLabel.tsx                    label row with an optional right slot (tag, count or button)
   Chip.tsx, StatCard.tsx, TerminalBlock.tsx (surface-2 inset with a `$` heading line), ListRows.tsx (line-soft dividers)
-  index/    HeroCard, PhotoCard, StatusCard, FeaturedCard
+  index/    HeroCard (with the framed photo), StatusCard, CurrentlyCard (a link to the current role on Work), FeaturedCard
   work/     CountCard, DayJobCard, CvCard, CreatorMatchCard, ProjectCard, AboutCard, RoleCard (details/summary)
   stack/    StackSummaryCard, SkillListCard, EducationCard
   contact/  ContactHeroCard, EmailCard, CopyButton *, LinkCard, LookingForCard, SiteCard
@@ -414,6 +414,7 @@ Decisions taken where the spec and the content rules meet. Each is a one-line ch
 - **Private-client note not shown.** Project 02's "Client is private: no name, link or screenshots." would push the card past its row at 1366×768; the muted `private client` chip states the same fact.
 - **Contact row 3 spans.** Looking-for takes columns 6–10 and this-site 11–12 (the spec drew 6–9 and 10–12) so the looking-for rows stay on one line at 1366px and the row fits a 700px-tall window.
 - **Featured chips in short rows.** When the Index featured card's row is short, its four stack chips are not shown; the full stack is on Work. Nothing from CONTENT.md is lost.
+- **Photo in the hero (2026-10-09).** The Photo card is gone; the photo sits in the hero beside the name as a transparent cutout in a 4:5 frame, and the freed top-right slot holds the status card (7–9) and a new "currently" card (10–12) linking to the current role on Work. Tablets, which used to show the Photo card, now show the hero's framed photo; phones keep the 64px square. `design/MOCKUP_SPEC.md` §4 and §8 record the same.
 - **Stat captions.** The 4-hour target is folded into the `10+` caption as the spec asks, joined with a `·`. `3 yrs` and `~8 h` are display abbreviations; captions stay verbatim.
 - **"2026 CV"** is chrome in `ui.ts`; update the year when the CV changes.
 - **Light-mode amber borders, dot and cursor.** Resolved: `--accent-line` is `#B87A00` in light mode and `#F2B544` in dark mode (section 8.1).
