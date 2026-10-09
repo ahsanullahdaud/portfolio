@@ -1,3 +1,4 @@
+import { NoBreak } from "@/components/ui/NoBreak";
 import type { Project } from "@/content/types";
 import { ui } from "@/content/ui";
 import { Card } from "../Card";
@@ -23,9 +24,13 @@ export function ProjectCard({ project, label, titleSize, className }: ProjectCar
     <Card contain={false} id={project.id} as="article" className={className}>
       <CardLabel>{label}</CardLabel>
       <div className="flex flex-col gap-2.5">
-        <h2 className={`font-display ${titleClass[titleSize]} font-bold text-fg`}>{project.name}</h2>
+        <h2 className={`font-display ${titleClass[titleSize]} font-bold text-fg`}>
+          <NoBreak>{project.name}</NoBreak>
+        </h2>
         {project.description && (
-          <p className="font-sans text-sm leading-snug text-fg-2">{project.description}</p>
+          <p className="font-sans text-sm leading-snug text-fg-2">
+            <NoBreak>{project.description}</NoBreak>
+          </p>
         )}
         <ul className="flex flex-wrap gap-1.5">
           {project.stack.map((item) => (

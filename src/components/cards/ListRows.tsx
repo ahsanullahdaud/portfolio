@@ -1,3 +1,4 @@
+import { NoBreak } from "@/components/ui/NoBreak";
 import { cn } from "@/lib/cn";
 
 type Row = { name: string; note?: string };
@@ -16,7 +17,9 @@ export function ListRows({ rows, className }: ListRowsProps) {
           key={row.name}
           className="flex items-baseline justify-between gap-3 py-1.5 text-fg short-list:py-0.5"
         >
-          <span>{row.name}</span>
+          <span>
+            <NoBreak>{row.name}</NoBreak>
+          </span>
           {row.note && <span className="shrink-0 text-xs text-muted short-list:text-[11px]">{row.note}</span>}
         </li>
       ))}

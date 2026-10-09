@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { currentRole } from "@/content/experience";
 import { screen } from "@/content/screens";
 import { ui } from "@/content/ui";
@@ -19,7 +20,9 @@ export function CurrentlyCard({ className }: { className?: string }) {
       <CardLabel right={<span aria-hidden="true">{ui.glyphs.go}</span>}>{ui.labels.currently}</CardLabel>
       <div className="flex flex-col gap-0.5">
         <h2 className="font-display text-title-24 font-bold text-fg short:text-[22px]">{role.title}</h2>
-        <p className="font-sans text-sm text-fg-2 short:text-[13px]">{role.org}</p>
+        <p className="font-sans text-sm text-fg-2 short:text-[13px]">
+          <NoBreak>{role.org}</NoBreak>
+        </p>
         <p className="font-mono text-xs text-muted short:text-[11px]">{role.dates}</p>
       </div>
     </Link>

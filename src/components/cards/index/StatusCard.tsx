@@ -1,3 +1,4 @@
+import { NoBreak } from "@/components/ui/NoBreak";
 import { identity } from "@/content/identity";
 import { ui } from "@/content/ui";
 import { Card } from "../Card";
@@ -14,9 +15,13 @@ export function StatusCard({ className }: { className?: string }) {
           {identity.statusShort}
         </h2>
         <ul className="flex flex-col gap-0.5 font-mono text-xs leading-snug text-muted short:gap-0 short:text-[11px]">
-          <li>{identity.location}</li>
+          <li>
+            <NoBreak>{identity.location}</NoBreak>
+          </li>
           {identity.statusDetails.map((line) => (
-            <li key={line}>{line}</li>
+            <li key={line}>
+              <NoBreak>{line}</NoBreak>
+            </li>
           ))}
         </ul>
       </div>

@@ -1,3 +1,4 @@
+import { NoBreak } from "@/components/ui/NoBreak";
 import { currentRole } from "@/content/experience";
 import { ui } from "@/content/ui";
 import { Card } from "../Card";
@@ -23,9 +24,13 @@ export function DayJobCard({ className }: { className?: string }) {
       </CardLabel>
       <div className="flex flex-col gap-1">
         <h2 className="font-display text-title-24 font-bold text-fg">{role.title}</h2>
-        <p className="font-sans text-sm text-fg-2">{role.org}</p>
+        <p className="font-sans text-sm text-fg-2">
+          <NoBreak>{role.org}</NoBreak>
+        </p>
         <p className="font-mono text-xs text-muted">{role.dates}</p>
-        <p className="mt-1.5 font-mono text-[11px] leading-normal text-muted">{role.stack.join(", ")}</p>
+        <p className="mt-1.5 font-mono text-[11px] leading-normal text-muted">
+          <NoBreak>{role.stack.join(", ")}</NoBreak>
+        </p>
       </div>
     </Card>
   );

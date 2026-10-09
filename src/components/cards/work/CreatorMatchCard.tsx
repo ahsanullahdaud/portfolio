@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Button } from "@/components/ui/Button";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { creatorMatch } from "@/content/projects";
 import { ui } from "@/content/ui";
 import { Card } from "../Card";
@@ -32,9 +33,13 @@ export function CreatorMatchCard({ className }: { className?: string }) {
                 </Fragment>
               ))}
             </h2>
-            {project.tagline && <p className="font-mono text-[13px] text-muted">{project.tagline}</p>}
+            {project.tagline && (
+              <p className="font-mono text-[13px] text-muted">
+                <NoBreak>{project.tagline}</NoBreak>
+              </p>
+            )}
             <p className="font-sans text-sm leading-snug text-fg-2">
-              {[project.oneLine, project.builtAiFirst].filter(Boolean).join(" ")}
+              <NoBreak>{[project.oneLine, project.builtAiFirst].filter(Boolean).join(" ")}</NoBreak>
             </p>
             <ul className="flex flex-wrap gap-1.5">
               {project.stack.map((item) => (
@@ -64,7 +69,9 @@ export function CreatorMatchCard({ className }: { className?: string }) {
                 <span aria-hidden="true" className="shrink-0 text-ok">
                   +
                 </span>
-                <span className="text-fg-2">{line}</span>
+                <span className="text-fg-2">
+                  <NoBreak>{line}</NoBreak>
+                </span>
               </li>
             ))}
           </ul>

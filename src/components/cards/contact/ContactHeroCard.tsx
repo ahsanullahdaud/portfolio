@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { PromptLine } from "@/components/shell/PromptLine";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { contact } from "@/content/contact";
 import { identity } from "@/content/identity";
 import { screen } from "@/content/screens";
@@ -30,7 +31,9 @@ export function ContactHeroCard({ className }: { className?: string }) {
             );
           })}
         </h2>
-        <p className="max-w-prose font-display text-lead font-medium text-fg-2">{contact.line}</p>
+        <p className="max-w-prose font-display text-lead font-medium text-fg-2">
+          <NoBreak>{contact.line}</NoBreak>
+        </p>
       </div>
       <p className="flex items-center gap-2.5 font-mono text-sm text-fg">
         <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full bg-ok" />

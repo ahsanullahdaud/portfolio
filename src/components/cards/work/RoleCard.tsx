@@ -1,3 +1,4 @@
+import { NoBreak } from "@/components/ui/NoBreak";
 import type { Role } from "@/content/types";
 import { ui } from "@/content/ui";
 import { Card } from "../Card";
@@ -23,10 +24,16 @@ export function RoleCard({ role, className }: RoleCardProps) {
       <div className="flex flex-col gap-2.5">
         <div className="flex flex-col gap-0.5">
           <h2 className="font-display text-title-24 font-bold text-fg">{role.title}</h2>
-          <p className="font-sans text-sm text-fg-2">{role.org}</p>
-          <p className="font-mono text-xs text-muted">{role.place}</p>
+          <p className="font-sans text-sm text-fg-2">
+            <NoBreak>{role.org}</NoBreak>
+          </p>
+          <p className="font-mono text-xs text-muted">
+            <NoBreak>{role.place}</NoBreak>
+          </p>
         </div>
-        <p className="font-sans text-sm leading-snug text-fg-2">{summary}</p>
+        <p className="font-sans text-sm leading-snug text-fg-2">
+          <NoBreak>{summary}</NoBreak>
+        </p>
         <ul className="flex flex-wrap gap-1.5">
           {role.stack.map((item) => (
             <li key={item}>
@@ -46,7 +53,9 @@ export function RoleCard({ role, className }: RoleCardProps) {
                   <span aria-hidden="true" className="shrink-0 text-muted">
                     -
                   </span>
-                  <span>{bullet}</span>
+                  <span>
+                    <NoBreak>{bullet}</NoBreak>
+                  </span>
                 </li>
               ))}
             </ul>

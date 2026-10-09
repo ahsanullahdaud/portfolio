@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { contact } from "@/content/contact";
 import { ui } from "@/content/ui";
 import { Card } from "../Card";
@@ -17,7 +18,9 @@ export function LookingForCard({ className }: { className?: string }) {
           {contact.lookingFor.map((row) => (
             <Fragment key={row.id}>
               <dt className="text-ok">{ui.lookingFor[row.id]}</dt>
-              <dd className="text-fg-2">{row.value}</dd>
+              <dd className="text-fg-2">
+                <NoBreak>{row.value}</NoBreak>
+              </dd>
             </Fragment>
           ))}
         </dl>

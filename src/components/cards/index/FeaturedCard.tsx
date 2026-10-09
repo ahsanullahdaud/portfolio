@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { creatorMatch } from "@/content/projects";
 import { ui } from "@/content/ui";
 import { Card } from "../Card";
@@ -23,7 +24,7 @@ export function FeaturedCard({ className }: { className?: string }) {
         <div className="flex flex-col gap-2.5 short:gap-1.5">
           <h2 className="font-display text-title-md font-bold text-fg">{project.name}</h2>
           <p className="font-sans text-[15px] leading-normal text-fg-2 short:text-sm short:leading-snug">
-            {project.oneLine}
+            {project.oneLine && <NoBreak>{project.oneLine}</NoBreak>}
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 short:contents">

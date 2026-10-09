@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { cn } from "@/lib/cn";
 
 type TerminalBlockProps = {
@@ -17,7 +18,9 @@ export function TerminalBlock({ heading, children, className }: TerminalBlockPro
         className,
       )}
     >
-      <p className="text-muted">{heading}</p>
+      <p className="text-muted">
+        <NoBreak>{heading}</NoBreak>
+      </p>
       {children}
     </div>
   );

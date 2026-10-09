@@ -1,4 +1,5 @@
 import { PromptLine } from "@/components/shell/PromptLine";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { currentRole } from "@/content/experience";
 import { creatorMatch } from "@/content/projects";
 import { screen } from "@/content/screens";
@@ -29,7 +30,9 @@ export function StackSummaryCard({ className }: { className?: string }) {
           {lines.map((line) => (
             <div key={line.label}>
               <dt className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted short-list:text-[10px]">{line.label}</dt>
-              <dd className="mt-0.5 text-fg-2 short-list:mt-0">{line.value}</dd>
+              <dd className="mt-0.5 text-fg-2 short-list:mt-0">
+                <NoBreak>{line.value}</NoBreak>
+              </dd>
             </div>
           ))}
         </dl>

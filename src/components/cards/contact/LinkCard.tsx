@@ -1,4 +1,5 @@
 import { ExternalLink } from "@/components/ui/ExternalLink";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { ui } from "@/content/ui";
 import { cn } from "@/lib/cn";
 import { cardClassName } from "../Card";
@@ -24,7 +25,9 @@ export function LinkCard({ label, title, handle, href, kind, className }: LinkCa
       <CardLabel right={<span aria-hidden="true">{glyph}</span>}>{label}</CardLabel>
       <div>
         <h2 className="font-display text-title-sm font-bold text-fg">{title}</h2>
-        <p className="mt-1 font-mono text-xs text-muted [overflow-wrap:anywhere]">{handle}</p>
+        <p className="mt-1 font-mono text-xs text-muted">
+          <NoBreak>{handle}</NoBreak>
+        </p>
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Cursor } from "@/components/shell/Cursor";
 import { PromptLine } from "@/components/shell/PromptLine";
 import { Button } from "@/components/ui/Button";
+import { NoBreak } from "@/components/ui/NoBreak";
 import { identity } from "@/content/identity";
 import { screen } from "@/content/screens";
 import { ui } from "@/content/ui";
@@ -43,9 +44,13 @@ export function HeroCard({ className }: { className?: string }) {
               {lastLine}
               <Cursor />
             </h1>
-            <p className="font-mono text-base font-medium text-accent-text">{identity.title}</p>
+            <p className="font-mono text-base font-medium text-accent-text">
+              <NoBreak>{identity.title}</NoBreak>
+            </p>
           </div>
-          <p className="max-w-prose font-display text-lead font-medium text-fg-2">{identity.tagline}</p>
+          <p className="max-w-prose font-display text-lead font-medium text-fg-2">
+            <NoBreak>{identity.tagline}</NoBreak>
+          </p>
         </div>
 
         {/* From 640px: the framed photo in the name's row, its caption in the row below. */}
