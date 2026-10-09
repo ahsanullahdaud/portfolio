@@ -5,11 +5,12 @@
 
 /* Card container queries (PLAN.md §3). At >= 1024px every window-filling card is a
    size container named `card`, so a card styles itself for the height its row gives it
-   instead of growing the row. Rows are strictly equal (minmax(0, 1fr)).
-   short:      a card too short for its full layout: under 213px, or under 237px when it
-               is also narrower than 726px (where the featured card's chips and buttons
-               would wrap onto two lines).
-   short-list: a Stack card too short for seven full-height list rows. */
+   instead of growing the row. Rows are strictly equal (minmax(0, 1fr)). Container
+   queries measure the card's content box, i.e. the card minus its 20px padding.
+   short:      a card too short for its full layout: content under 213px (card under
+               253px), or under 237px when the content is also narrower than 726px
+               (where the featured card's chips and buttons would wrap onto two lines).
+   short-list: a Stack card too short for seven full-height list rows (content under 301px). */
 @custom-variant short {
   @container card ((max-height: 236px) and (max-width: 725px)) or (max-height: 212px) {
     @slot;
@@ -20,7 +21,8 @@
     @slot;
   }
 }
-/* short-hero: the two-row Index hero on a window under about 760px tall. */
+/* short-hero: the two-row Index hero with a content box under 400px, i.e. windows up to
+   about 850px tall. */
 @custom-variant short-hero {
   @container card (max-height: 400px) {
     @slot;
@@ -59,6 +61,10 @@
   /* Index hero photo frame width (4:5, so the height is 1.25x). Scales with the window
      height like the display type, capped at 230px so the 433px cutout stays sharp at 2x. */
   --photo-w: clamp(140px, 23.5vh, 230px);
+
+  /* Space between the hero's prompt line and the name block (and the photo frame, which
+     shares the name's row): 32px at 900px tall, 10px at 700px, linear in between. */
+  --hero-gap: clamp(10px, 11vh - 67px, 32px);
 
   /* Largest name size whose first line ("Ahsan Ullah", about 5.3em wide) still fits the
      hero's text column: the card's content width (container units exclude padding) minus
