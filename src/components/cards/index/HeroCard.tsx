@@ -11,12 +11,13 @@ import { Card } from "../Card";
 /**
  * Index hero. Prompt line; the name on two lines with the cursor, the title and the
  * tagline; and from 640px a framed photo beside them (surface-2, 1px line, card radius,
- * 4:5, width `--photo-w` = clamp(140px, 23.5vh, 230px), so at most 230×288). The frame
+ * 3:4 like the photo itself so it fills the frame edge to edge, width `--photo-w` =
+ * clamp(140px, 23.5vh, 230px), so at most 230×307). The frame
  * and the text block share one grid row and the same `--hero-gap` top margin (32px at
  * 900px tall, 10px at 700px): the block stretches to the frame's height with the name at
  * the top and the tagline at the bottom, so the frame's edges align with the top of the
  * name and the bottom of the tagline. The caption sits in the row below the frame, and
- * the two buttons on their own row. In a short hero the frame narrows to 22.5vh and the
+ * the two buttons on their own row. In a short hero the frame narrows to 21.5vh and the
  * gaps tighten. The name is capped by `--name-fit` so its
  * first line never wraps in the narrower column. On phones the photo is a 64px square at
  * the top right. The cutout is `object-contain` anchored to the bottom of its frame, so
@@ -30,7 +31,7 @@ export function HeroCard({ className }: { className?: string }) {
 
   return (
     <Card as="section" variant="hero" className={className}>
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-5 gap-y-0 sm:grid-cols-[minmax(0,1fr)_var(--photo-w)] sm:gap-x-6 short-hero:[--photo-w:22.5vh]">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-5 gap-y-0 sm:grid-cols-[minmax(0,1fr)_var(--photo-w)] sm:gap-x-6 short-hero:[--photo-w:21.5vh]">
         <PromptLine command={screen.index.command} className="col-start-1 row-start-1 self-center" />
 
         {/* Phones: 64px photo at the top right. */}
@@ -57,7 +58,7 @@ export function HeroCard({ className }: { className?: string }) {
 
         {/* From 640px: the framed photo in the name's row, its caption in the row below. */}
         <figure className="hidden sm:contents">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-card border border-line bg-surface-2 sm:col-start-2 sm:row-start-2 sm:mt-[var(--hero-gap)]">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-card border border-line bg-surface-2 sm:col-start-2 sm:row-start-2 sm:mt-[var(--hero-gap)]">
             <Image
               src={ui.assets.photoCutout}
               alt={alt}

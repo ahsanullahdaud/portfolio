@@ -58,8 +58,9 @@
      uses this fixed row height so the first three rows fill the window. */
   --row-3: calc((100dvh - 152px - 24px) / 3);
 
-  /* Index hero photo frame width (4:5, so the height is 1.25x). Scales with the window
-     height like the display type, capped at 230px so the 433px cutout stays sharp at 2x. */
+  /* Index hero photo frame width (3:4 like the photo, so the height is 1.333x). Scales with
+     the window height like the display type, capped at 230px so the 433px cutout stays
+     sharp at 2x. A short hero overrides it to 21.5vh. */
   --photo-w: clamp(140px, 23.5vh, 230px);
 
   /* Space between the hero's prompt line and the name block (and the photo frame, which
